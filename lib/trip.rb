@@ -17,5 +17,12 @@ module RideShare
         raise ArgumentError.new("Invalid rating #{@rating}")
       end
     end
+
+    def inspect
+      "#<#{self.class.name}:0x#{self.object_id.to_s(16)} " +
+      "ID=#{id.inspect} " +
+      "DriverID=#{driver&.id.inspect} " +
+      "PassengerID=#{passenger&.id.inspect}>"
+    end
   end
 end
