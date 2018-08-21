@@ -7,9 +7,10 @@ This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/mast
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
-- Creating and instantiating classes with attributes
-- Creating class methods and instance methods within our classes
-- Writing pseudocode and creating tests to drive the creation of our code
+-   Creating and instantiating classes with attributes
+-   Creating class methods and instance methods within our classes
+-   Writing pseudocode and creating tests to drive the creation of our code
+-   Using Inheritance to extend classes
 
 
 ## Context
