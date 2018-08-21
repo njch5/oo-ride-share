@@ -40,7 +40,7 @@ module RideShare
 
     def find_driver(id)
       check_id(id)
-      @drivers.find{ |driver| driver.id == id }
+      return @drivers.find{ |driver| driver.id == id }
     end
 
     def load_passengers
@@ -60,7 +60,7 @@ module RideShare
 
     def find_passenger(id)
       check_id(id)
-      @passengers.find{ |passenger| passenger.id == id }
+      return @passengers.find{ |passenger| passenger.id == id }
     end
 
     def load_trips
@@ -87,11 +87,11 @@ module RideShare
         trips << trip
       end
 
-      trips
+      return trips
     end
 
     def inspect
-      "#<#{self.class.name}:0x#{self.object_id.to_s(16)} " +
+      return "#<#{self.class.name}:0x#{self.object_id.to_s(16)} " +
       "#{trips.count} trips, " +
       "#{drivers.count} drivers, " +
       "#{passengers.count} passengers>"

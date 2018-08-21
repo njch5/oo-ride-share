@@ -14,7 +14,7 @@ module RideShare
     end
 
     def get_drivers
-      @trips.map{ |t| t.driver }
+      return @trips.map{ |t| t.driver }
     end
 
     def add_trip(trip)
