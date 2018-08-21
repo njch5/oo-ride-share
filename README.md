@@ -203,7 +203,7 @@ You should also add explicit tests for this new situation. For example, what hap
 
 We want to evolve `TripDispatcher` so it assigns drivers in more intelligent ways. Every time we make a new trip, we want to pick drivers who haven't completed a trip in a long time, or who have never been assigned a trip.
 
-In other words, we should assign the driver to **the available driver whose most recent trip ending is the oldest compared to today.**
+In other words, we should assign the driver to **the available driver who has never driver or lacking a new driver one whose most recent trip ending is the oldest compared to today.**
 
 Modify `TripDispatcher#request_trip` to use the following rules to select a `Driver`:
 - The `Driver` must have a status of `AVAILABLE`
