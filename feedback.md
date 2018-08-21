@@ -10,7 +10,7 @@ Answer comprehension questions |
 `Trip` has a helper method to calculate duration |
 `Passenger` has a method to calculate total cost of all trips |
 `Driver` has a method to calculate total revenue |
-Complete tests |
+Complete tests for new behavior |
 **Wave 2** |
 `TripDispatcher` has a new method to create trips |
 creating a trip in `TripDispatcher` relies on methods in `Driver` and `Passenger` to modify their own attributes |
