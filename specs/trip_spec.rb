@@ -19,21 +19,21 @@ describe "Trip class" do
     end
 
     it "is an instance of Trip" do
-      @trip.must_be_kind_of RideShare::Trip
+      expect(@trip).must_be_kind_of RideShare::Trip
     end
 
     it "stores an instance of passenger" do
-      @trip.passenger.must_be_kind_of RideShare::Passenger
+      expect(@trip.passenger).must_be_kind_of RideShare::Passenger
     end
 
     it "stores an instance of driver" do
-      @trip.driver.must_be_kind_of RideShare::Driver
+      expect(@trip.driver).must_be_kind_of RideShare::Driver
     end
 
     it "raises an error for an invalid rating" do
       [-3, 0, 6].each do |rating|
         @trip_data[:rating] = rating
-        proc {
+        expect {
           RideShare::Trip.new(@trip_data)
         }.must_raise ArgumentError
       end
