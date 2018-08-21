@@ -3,7 +3,7 @@ Remember the ride share exercise we did with designing and creating a system to 
 
 Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
-This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) individual project.
+This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) pair project.
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
@@ -161,7 +161,7 @@ Now that we have data for cost available for every trip, we can do some interest
 
 **All of these methods must have tests.**
 
-<!-- ### Wave 2
+### Wave 2
 
 Our program needs a way to make new trips and appropriately assign a driver and passenger.
 
@@ -221,7 +221,7 @@ Grace is excluded because they are not `AVAILABLE`, and because they have one in
 
 Of Ada and Katherine, we prefer Ada, because their most recent trip is older.
 
-**All of this code must have tests.** -->
+**All of this code must have tests.**
 
 ## What Instructors Are Looking For
 Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
