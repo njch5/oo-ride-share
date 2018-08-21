@@ -15,9 +15,9 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 
 ## Context
 We have a code base that already pulls data from CSV files and turns them into collections of the following objects:
-- `Driver`s
-- `Passenger`s
-- `Trip`s
+-   `Driver`s
+-   `Passenger`s
+-   `Trip`s
 
 All of this data is managed in a class called `TripDispatcher`. Our program will contain _one_ instance of `TripDispatcher`, which will load and manage the lists of `Driver`s, `Passenger`s and `Trip`s.
 
@@ -39,7 +39,7 @@ Each `Driver` instance is able to:
 
 **Method**|**Description**
 -----|-----
-average_rating  |  retrieve an average rating for that driver based on all trips taken
+average_rating|retrieve an average rating for that driver based on all trips taken
 
 #### Passenger
 Each `Passenger` has:
@@ -55,27 +55,27 @@ Each `Passenger` instance is able to:
 
 **Method**|**Description**
 -----|-----
-get_drivers  |  retrieve the list of all previous driver instances associated with trips this passenger has taken
+get_drivers|retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 #### Trip
 Each `Trip` has:
 
 **Attribute**|**Description**
 -----|-----
-id | The Trip's ID number
-passenger | The passenger on the trip
-driver | The driver for the trip
-start_time | When did this trip begin?
-end_time | When did this trip finish?
-rating | The rating given by the passenger, a number 1-5
-cost | How much did the passenger pay?
+id|The Trip's ID number
+passenger|The passenger on the trip
+driver|The driver for the trip
+start_time|When did this trip begin?
+end_time|When did this trip finish?
+rating|The rating given by the passenger, a number 1-5
+cost|How much did the passenger pay?
 
 Each `Trip` instance is able to:
 
 **Method**|**Description**
 -----|-----
-driver  |  retrieve the associated driver instance
-passenger  |  retrieve the associated passenger instance
+driver|retrieve the associated driver instance
+passenger|retrieve the associated passenger instance
 
 #### TripDispatcher
 The `TripDispatcher` has:
@@ -87,8 +87,8 @@ passengers|A list of all passengers in the system|a collection of Passenger inst
 trips|A list of all trips taken in the system|a collection of Trip instances
 
 The `TripDispatcher` has the following responsibilities:
-- load collections of `Driver`s, `Passenger`s, and `Trip`s from CSV files
-- store and manage this data into separate collections
+-  load collections of `Driver`s, `Passenger`s, and `Trip`s from CSV files
+-  store and manage this data into separate collections
 
 The `TripDispatcher` does the following:
 - on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
@@ -111,19 +111,26 @@ We will use the same project structure we used for the previous project. Classes
 The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
 ### Setup
-1. Fork this repository in GitHub
-1. Clone the repository to your computer
-1. Run `rake` to run the tests
+1.  You'll be working with an assigned pair. High-five your pair.
+1.  Choose **one** person to fork this repository in GitHub
+1.  Add the person who **didn't** fork the repository as a [collaborator](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/).
+1.  Both individuals will clone the forked repo: $ git clone `[YOUR FORKED REPO URL]`
+1.  Both partners `cd` into their project directory
+1.  Run `rake` to run the tests
+1.  Together review the provided tests and code.
 
 ### Process
 You should use the following process as much as possible:
 
-1. Write pseudocode
-1. Write test(s)
-1. Write code
-1. Refactor
+1.  Write pseudocode
+1.  Write test(s)
+1.  Write code
+1.  Refactor
 
 ## Requirements
+
+### Pair Plan
+First, come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
 
 ### Baseline
 
@@ -142,12 +149,12 @@ The purpose of Wave 1 is to help you become familiar with the existing code, and
 
 #### 1.1: Upgrading Dates
 
-Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use Ruby's built-in `Time` class. You should:
+Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use Ruby's built-in [`Time`](https://ruby-doc.org/core-2.5.1/Time.html) class. You should:
 
-1. Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
-1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
-1. Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, and a corresponding test
-1. Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, and a corresponding test
+1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
+1.  Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
+1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, and a corresponding test
+1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, and a corresponding test
 
 **Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work. This is a weird quirk of how the library is designed.
 
@@ -155,10 +162,10 @@ Currently our implementation saves the start and end time of each trip as a stri
 
 Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `Driver` or `Passenger`.
 
-1. Add an instance method to `Passenger` that will return the _total amount of money_ that passenger has spent on their trips
-1. Add an instance method to `Passenger` that will return the _total amount of time_ that passenger has spent on their trips
-1. Add an instance method to `Driver` to calculate that driver's _total revenue_ across all their trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
-1. Add an instance method to `Driver` to calculate that driver's _average revenue per hour_ spent driving, using the above formula for revenue
+1.  Add an instance method to `Passenger` that will return the _total amount of money_ that passenger has spent on their trips
+1.  Add an instance method to `Passenger` that will return the _total amount of time_ that passenger has spent on their trips
+1.  Add an instance method to `Driver` to calculate that driver's _total revenue_ across all their trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
+1.  Add an instance method to `Driver` to calculate that driver's _average revenue per hour_ spent driving, using the above formula for revenue
 
 **All of these methods must have tests.**
 
@@ -167,29 +174,29 @@ Now that we have data for cost available for every trip, we can do some interest
 Our program needs a way to make new trips and appropriately assign a driver and passenger.
 
 This logic will be handled by our `TripDispatcher` in a new instance method: `TripDispatcher#request_trip(passenger_id)`. When we create a new trip with this method, the following will be true:
-- The passenger ID will be supplied (this is the person requesting a trip)
-- Your code should automatically assign a driver to the trip
-  - For this initial version, choose the first driver whose status is `:AVAILABLE`
-- Your code should use the current time for the start time
-- The end date, cost and rating will all be `nil`
-  - The trip hasn't finished yet!
+-   The passenger ID will be supplied (this is the person requesting a trip)
+-   Your code should automatically assign a driver to the trip
+ -   For this initial version, choose the first driver whose status is `:AVAILABLE`
+-   Your code should use the current time for the start time
+-   The end date, cost and rating will all be `nil`
+  -   The trip hasn't finished yet!
 
 You should use this information to:
 
-- Create a new instance of `Trip`
-- Modify this selected driver using a new helper method in `Driver`:
-  - Add the new trip to the collection of trips for that `Driver`
-  - Set the driver's status to `:UNAVAILABLE`
-- Modify the passenger for the trip using a new helper method in `Passenger`:
-  - Add the new trip to the collection of trips for the `Passenger`
-- Add the new trip to the collection of all `Trip`s in `TripDispatcher`
-- Return the newly created trip
+-   Create a new instance of `Trip`
+-   Modify this selected driver using a new helper method in `Driver`:
+ -Add the new trip to the collection of trips for that `Driver`
+ -Set the driver's status to `:UNAVAILABLE`
+-   Modify the passenger for the trip using a new helper method in `Passenger`:
+ -Add the new trip to the collection of trips for the `Passenger`
+-   Add the new trip to the collection of all `Trip`s in `TripDispatcher`
+-   Return the newly created trip
 
 **All of this code must have tests.** Things to pay attention to:
-- Was the trip created properly?
-- Were the trip lists for the driver and passenger updated?
-- Was the driver who was selected `AVAILABLE`?
-- What happens if you try to request a trip when there are no `AVAILABLE` drivers?
+-   Was the trip created properly?
+-   Were the trip lists for the driver and passenger updated?
+-   Was the driver who was selected `AVAILABLE`?
+-   What happens if you try to request a trip when there are no `AVAILABLE` drivers?
 
 #### Interaction with Wave 1
 
@@ -197,7 +204,7 @@ One thing you may notice is that this change breaks your code from Wave 1, possi
 
 Your code from wave 1 should _ignore_ any in-progress trips. That is to say, any trip where the end time is `nil` should not be included in your totals.
 
-You should also add explicit tests for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
+You should also **add explicit tests** for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
 
 ### Wave 3
 
