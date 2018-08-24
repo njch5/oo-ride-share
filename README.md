@@ -174,12 +174,13 @@ Each `Trip` instance should also be able to do the following:
 driver|retrieve the associated `Driver` instance
 
 #### Loading Drivers
-Update the `TripDispatcher` class to add the following Methods:
+Update the `TripDispatcher` class to add or update the following Methods:
 
 **Method**|**Description**
 -----|-----
 load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances
 find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
+load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.  
 
 #### Driver methods
 
