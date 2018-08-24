@@ -36,6 +36,14 @@ name|The name of the User
 Phone Number|The User's Phone Number which must be in phone number format (XXX) XXX-XXXX
 trips|A list of trips that only this User has taken as a passenger
 
+User Methods
+
+**Method**|**Description**
+-----|-----
+self.load_users|A class method which loads users from a CSV file, returning the list
+add_trip|Adds a trip to the user's list of trips
+
+
 #### Trip
 A `Trip` represents a journey a `User` has taken with the service.
 
