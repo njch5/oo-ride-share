@@ -1,7 +1,7 @@
 require 'csv'
 require 'time'
 
-require_relative 'passenger'
+require_relative 'user'
 require_relative 'trip'
 
 module RideShare
