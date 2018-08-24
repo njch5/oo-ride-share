@@ -2,11 +2,11 @@ require 'csv'
 
 module RideShare
   class Trip
-    attr_reader :id, :passenger, :start_time, :end_time, :cost, :rating
+    attr_reader :id, :user, :start_time, :end_time, :cost, :rating
 
     def initialize(input)
       @id = input[:id]
-      @passenger = input[:passenger]
+      @user = input[:user]
       @start_time = input[:start_time]
       @end_time = input[:end_time]
       @cost = input[:cost]

@@ -13,21 +13,6 @@ module RideShare
       @trips = input[:trips].nil? ? [] : input[:trips]
     end
 
-    def self.load_users(filename = 'support/users.csv')
-      users = []
-
-      CSV.read(filename, headers: true).each do |line|
-        input_data = {}
-        input_data[:id] = line[0].to_i
-        input_data[:name] = line[1]
-        input_data[:phone] = line[2]
-
-        users << User.new(input_data)
-      end
-
-      return users
-    end
-
     def add_trip(trip)
       @trips << trip
     end
