@@ -59,8 +59,8 @@ User|retrieve the associated User instance
 #### TripDispatcher
 The `TripDispatcher` has:
 
-**Attribute**|**Description**|Returns
------|-----
+**Attribute**|**Description**|**Returns**
+-----|-----|-----
 users|A list of all users in the system|a collection of User instances
 trips|A list of all trips taken in the system|a collection of Trip instances
 
