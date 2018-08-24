@@ -20,7 +20,7 @@ We have a code base that already pulls data from CSV files and turns them into c
 
 All of this data is managed in a class called `TripDispatcher`. Our program will contain _one_ instance of `TripDispatcher`, which will load and manage the lists of `Driver`s, `User`s and `Trip`s.
 
-We are going to continue making functionality that works with this data, such as adding finding the duration of a specific trip or the total amount of money a User has spent, or the amount of money a driver has made and also make functionality to create a new trip.
+We are going to continue making functionality that works with this data, such as determining the duration of a specific trip and the total amount of money a user has spent, as well as the amount of money a driver has made and also add functionality to create a new trip and assign available drivers.
 
 ### The Code So Far
 
@@ -180,7 +180,7 @@ Update the `TripDispatcher` class to add or update the following Methods:
 -----|-----
 load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances
 find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
-load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.  
+load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.
 
 #### Driver methods
 
