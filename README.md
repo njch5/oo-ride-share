@@ -140,7 +140,7 @@ Currently our implementation saves the start and end time of each trip as a stri
 
 Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `User`.
 
-1.  Add an instance method, `total_spent`, to `User` that will return the _total amount of money_ that user has spent on their trips
+1.  Add an instance method, `net_expenditures`, to `User` that will return the _total amount of money_ that user has spent on their trips
 1.  Add an instance method,  `total_time_spent` to `User` that will return the _total amount of time_ that user has spent on their trips
 
 **Each of these methods must have tests.**
@@ -190,6 +190,8 @@ After trips have a reference to their drivers and TripDispatcher can load a list
 average_rating  |  This method sums up the ratings from all a Driver's trips and returns the average
 add_trip  |  This method adds a trip to the driver's collection of trips
 total_revenue  |  This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 is subtracted.
+net_expenditures|This method will **override** the cooresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money.
+
 
 **All the new methods should have tests**
 
