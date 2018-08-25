@@ -52,7 +52,7 @@ Each `Trip` has:
 **Attribute**|**Description**
 -----|-----
 id|The Trip's ID number
-User|The User on the trip
+passenger|The User being transported on the trip
 start_time|When did this trip begin?
 end_time|When did this trip finish?
 rating|The rating given by the User, a number 1-5
