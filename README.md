@@ -83,7 +83,7 @@ The `TripDispatcher` instance is able to:
 
 **Methods**|**Description**
 -----|-----
-passengers|retrieve the collection of `User`s who are being transported
+passengers|retrieve the collection of users who are being transported
 trips|retrieve the collection of `Trip`s  |
 find_user  |  find an instance of `User` given an ID
 
