@@ -72,7 +72,7 @@ The `TripDispatcher` has the following responsibilities:
 -   store and manage this data into separate collections
 
 The `TripDispatcher` does the following:
--   on instantiation, loads and creates `Trip`s, `User`s, and stores them into collections
+-   on instantiation, loads and creates `Trip`s, and `User`s, and stores them into collections
 
 The `TripDispatcher` instance is able to:
 
