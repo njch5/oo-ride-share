@@ -34,7 +34,7 @@ Each `User` has:
 id|The User's ID number
 name|The name of the User
 Phone Number|The User's Phone Number which must be in phone number format (XXX) XXX-XXXX
-trips|A list of trips that only this User has taken as a passenger
+trips|A list of trips that this User has taken as a passenger
 
 User Methods
 
