@@ -192,7 +192,7 @@ load_trips|This method should be updated to add a corresponding `Driver` to the 
 
 #### Driver methods
 
-After trips have a reference to their drivers and TripDispatcher can load a list of drivers, add the following functionality.
+After each trip has a reference to its `Driver` and TripDispatcher can load a list of `Driver`s, add the following functionality to the `Driver` class:
 
 **Method**|**Description**
 -----|-----
