@@ -161,7 +161,7 @@ We will do this by creating a `Driver` class which inherits from `User`.  A `Dri
 
 **Attribute**|**Description**
 -----|-----
-vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length of 17 to ensure it is a valid vehicle identification number
 driven_trips | A list of trips the user has acted as a driver for.
 status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
 
