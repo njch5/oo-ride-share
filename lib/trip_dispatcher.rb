@@ -40,7 +40,7 @@ module RideShare
 
         parsed_trip = {
           id: raw_trip[:id].to_i,
-          user: passenger,
+          passenger: passenger,
           start_time: raw_trip[:start_time],
           end_time: raw_trip[:end_time],
           cost: raw_trip[:cost].to_f,
