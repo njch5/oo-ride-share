@@ -57,12 +57,7 @@ start_time|When did this trip begin?
 end_time|When did this trip finish?
 rating|The rating given by the User, a number 1-5
 cost|How much did the passenger pay?
-
-Each `Trip` instance is able to:
-
-**Method**|**Description**
------|-----
-User|retrieve the associated User instance
+passenger|The User being transported on the trip
 
 #### TripDispatcher
 The `TripDispatcher` has:
