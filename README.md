@@ -165,7 +165,7 @@ vehicle\_identification|The driver's Vehicle Identification Number (VIN Number),
 driven_trips | A list of trips the user has acted as a driver for.
 status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
 
-**Create tests** to ensure that a `Driver` instance can be created successfully.
+**Create tests** to ensure that a `Driver` instance can be created successfully and insure that an `ArgumentError` is raised for an invalid status.
 
 #### Updating Trip
 
