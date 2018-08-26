@@ -70,9 +70,7 @@ module RideShare
     private
 
     def check_id(id)
-      if id.nil? || id <= 0
-        raise ArgumentError, "ID cannot be blank or less than zero. (got #{id})"
-      end
+      raise ArgumentError, "ID cannot be blank or less than zero. (got #{id})" if id.nil? || id <= 0
     end
   end
 end

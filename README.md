@@ -40,7 +40,6 @@ User Methods
 
 **Method**|**Description**
 -----|-----
-self.load_users|A class method which loads users from a CSV file, returning the list
 add_trip|Adds a trip to the user's list of trips
 
 
@@ -60,11 +59,13 @@ cost|How much did the passenger pay?
 passenger|The User being transported on the trip
 
 #### TripDispatcher
+The `TripDispatcher` class is designed to load trips & users from a CSV file and provides methods to find and add trips.
+
 The `TripDispatcher` has:
 
 **Attribute**|**Description**|**Returns**
 -----|-----|-----
-users|A list of all users in the system|a collection of User instances
+passengers|A list of all users in the system|a collection of User instances
 trips|A list of all trips taken in the system|a collection of Trip instances
 
 The `TripDispatcher` has the following responsibilities:
@@ -78,9 +79,9 @@ The `TripDispatcher` instance is able to:
 
 **Methods**|**Description**
 -----|-----
-passengers|retrieve the collection of users who are being transported
-trips|retrieve the collection of `Trip`s  |
-find_user  |  find an instance of `User` given an ID
+load_users|A method which loads users from a CSV file, returning the list
+load_trips|A method which loads trips from a CSV file, returning the list
+find_passenger  |  find an instance of `User` given an ID
 
 By the end of this project, a `TripDispatcher` will be able to:
 -   create new trips assigning appropriate passengers and drivers
