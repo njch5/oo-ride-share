@@ -137,6 +137,7 @@ Currently our implementation saves the start and end time of each trip as a stri
 1.  Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
 1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, **and a corresponding test**
 1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, **and a corresponding test**
+
 **Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work.
 
 #### 1.2: User Aggregate Statistics
@@ -181,9 +182,10 @@ Update the `TripDispatcher` class to add or update the following Methods:
 
 **Method**|**Description**
 -----|-----
-load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances, note that **drivers can be passengers too!** Replace the instance of `User` in the `passengers` array with a cooresponding instance of `Driver`find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
+load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances, note that **drivers can be passengers too!** Replace the instance of `User` in the `passengers` array with a cooresponding instance of `Driver`
+find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
 load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.
-
+  |
 #### Driver methods
 
 After each trip has a reference to its `Driver` and TripDispatcher can load a list of `Driver`s, add the following functionality to the `Driver` class:
@@ -191,6 +193,7 @@ After each trip has a reference to its `Driver` and TripDispatcher can load a li
 **Method**|**Description**
 -----|-----
 average_rating  |  This method sums up the ratings from all a Driver's trips and returns the average
+add_driven_trip  |  This method adds a trip to the driver's collection of trips for which they have acted as a driver
 total_revenue  |  This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted.
 net_expenditures|This method will **override** the cooresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money.
 
@@ -213,10 +216,10 @@ You should use this information to:
 
 -   Create a new instance of `Trip`
 -   Modify this selected driver using a new helper method in `Driver`:
- *  Add the new trip to the collection of trips for that `Driver`
-   -Set the driver's status to `:UNAVAILABLE`
-    -   Modify the passenger for the trip using a new helper method in `User`:
-     *  Add the new trip to the collection of trips for that passenger
+-  Add the new trip to the collection of trips for that `Driver`
+-  Set the driver's status to `:UNAVAILABLE`
+-   Modify the passenger for the trip using a new helper method in `User`
+-  Add the new trip to the collection of trips for the passenger in `User`
 -   Add the new trip to the collection of all `Trip`s in `TripDispatcher`
 -   Return the newly created trip
 
