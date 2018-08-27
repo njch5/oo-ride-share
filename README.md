@@ -229,7 +229,7 @@ You should use this information to:
 
 #### Interaction with Waves 1 & 2
 
-One thing you may notice is that this change breaks your code from previous waves, possibly in subtle ways. We've added a new kind of trip, an _in-progress_ trip, that is missing some of the values you need to compute those numbers.
+One thing you may notice is that **this change breaks your code** from previous waves, possibly in subtle ways. We've added a new kind of trip, an _in-progress_ trip, that is missing some of the values you need to compute those numbers.
 
 Your code from waves 1 & 2 should _ignore_ any in-progress trips. That is to say, any trip where the end time is `nil` should not be included in your totals.
 
