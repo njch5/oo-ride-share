@@ -60,8 +60,10 @@ xdescribe "Driver class" do
 
   describe "average_rating method" do
     before do
-      @driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
-      trip = RideShare::Trip.new(id: 8, driver: @driver, passenger: nil, date: "2016-08-08", rating: 5)
+      @driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV",
+                                      vin: "1C9EVBRM0YBC564DZ")
+      trip = RideShare::Trip.new(id: 8, driver: @driver, passenger: nil,
+                                 date: Time.parse("2016-08-08"), rating: 5)
       @driver.add_trip(trip)
     end
 
@@ -79,10 +81,16 @@ xdescribe "Driver class" do
       driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
       expect(driver.average_rating).must_equal 0
     end
-  end
 
-  describe "average_rating" do
-    # You add tests for the average_rating method
+    it "correctly calculates the average rating" do
+      trip2 = RideShare::Trip.new(id: 8, driver: @driver, passenger: nil,
+                                  date: Time.parse("2016-08-08"), rating: 1)
+      @driver.add_trip(trip2)
+
+      expect(@driver.average_rating).must_be_close_to (5.0 + 1.0) / 2.0, 0.01
+    end
+
+
   end
 
   describe "total_revenue" do
