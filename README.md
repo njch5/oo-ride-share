@@ -136,8 +136,7 @@ Currently our implementation saves the start and end time of each trip as a stri
 1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
 1.  Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
 1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, **and a corresponding test**
-1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, and a corresponding test
-
+1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, **and a corresponding test**
 **Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work.
 
 #### 1.2: User Aggregate Statistics
@@ -157,7 +156,7 @@ We will do this by creating a `Driver` class which inherits from `User`.  A `Dri
 
 **Attribute**|**Description**
 -----|-----
-vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length of 17 to ensure it is a valid vehicle identification number
+vehicle_id|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length of 17 to ensure it is a valid vehicle identification number
 driven_trips | A list of trips the user has acted as a driver for.
 status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
 
@@ -182,8 +181,7 @@ Update the `TripDispatcher` class to add or update the following Methods:
 
 **Method**|**Description**
 -----|-----
-load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances
-find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
+load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances, note that **drivers can be passengers too!** Replace the instance of `User` in the `passengers` array with a cooresponding instance of `Driver`find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
 load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.
 
 #### Driver methods
@@ -193,7 +191,7 @@ After each trip has a reference to its `Driver` and TripDispatcher can load a li
 **Method**|**Description**
 -----|-----
 average_rating  |  This method sums up the ratings from all a Driver's trips and returns the average
-add_trip  |  This method adds a trip to the driver's collection of trips
+load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances, note that **drivers can be passengers too!** Replace the instance of `User` in the `passengers` array with a cooresponding instance of `Driver`
 total_revenue  |  This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted.
 net_expenditures|This method will **override** the cooresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money.
 
@@ -216,10 +214,10 @@ You should use this information to:
 
 -   Create a new instance of `Trip`
 -   Modify this selected driver using a new helper method in `Driver`:
- -Add the new trip to the collection of trips for that `Driver`
-    -Set the driver's status to `:UNAVAILABLE`
--   Modify the user for the trip using a new helper method in `User`:
- -Add the new trip to the collection of trips for the `User`
+ *  Add the new trip to the collection of trips for that `Driver`
+   -Set the driver's status to `:UNAVAILABLE`
+    -   Modify the passenger for the trip using a new helper method in `User`:
+     *  Add the new trip to the collection of trips for that passenger
 -   Add the new trip to the collection of all `Trip`s in `TripDispatcher`
 -   Return the newly created trip
 
@@ -228,6 +226,7 @@ You should use this information to:
 -   Were the trip lists for the driver and user updated?
 -   Was the driver who was selected `AVAILABLE`?
 -   What happens if you try to request a trip when there are no `AVAILABLE` drivers?
+-   Drivers cannot drive themselves
 
 #### Interaction with Waves 1 & 2
 
@@ -246,7 +245,7 @@ In other words, we should assign the driver to **the available driver who has ne
 Modify `TripDispatcher#request_trip` to use the following rules to select a `Driver`:
 - The `Driver` must have a status of `AVAILABLE`
 - The `Driver` must not have any in-progress trips (end time of `nil`)
-- From the `Driver`s that remain, select the one whose most recent trip ended the longest time ago
+- From the `Driver`s that remain, select the one who has never driven or whose most recent trip ended the longest time ago
 
 For example, if we have three drivers, each with two trips:
 
