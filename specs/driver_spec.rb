@@ -78,7 +78,8 @@ xdescribe "Driver class" do
     end
 
     it "returns zero if no trips" do
-      driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
+      driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV",
+                                     vin: "1C9EVBRM0YBC564DZ")
       expect(driver.average_rating).must_equal 0
     end
 
