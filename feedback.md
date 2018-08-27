@@ -8,21 +8,21 @@ Used Git Regularly|
 Answer comprehension questions |
 **Wave 1**|
 Appropriate use of Ruby's `Date`|
-`Trip` has a helper method to calculate duration |
+`Trip` has a helper method to calculate duration|
 `Passenger` has a method to calculate total cost of all trips|
 Complete tests for new behavior|
 **Wave 2** |
-`Driver` inherits from `User` |
+`Driver` inherits from `User`|
 `Driver` has `add_driven_trip` method|
 `Driver` has methdo to calculate average rating|
 `Driver` has methdo to calculate net expenditures and it uses `super`|
-`Driver` has a method to calculate total revenue |
+`Driver` has a method to calculate total revenue|
 **Wave 3** |
 `TripDispatcher` has a new method to create trips|
 creating a trip in `TripDispatcher` relies on methods in `Driver` and `Passenger` to modify their own attributes|
 Complete tests|
 Complex logic was correctly implemented and tested|
-Complete tests |
+Complete tests|
 **Wave 4** |
 `TripDispatcher` now assigns trips to either the newest driver (no trips), or the driver who has not driven in the longest time|
 Complete tests  |
