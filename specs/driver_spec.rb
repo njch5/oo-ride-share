@@ -29,7 +29,7 @@ xdescribe "Driver class" do
     end
 
     it "is set up for specific attributes and data types" do
-      [:id, :name, :vehicle_id, :status].each do |prop|
+      [:id, :name, :vehicle_id, :status, :driven_trips].each do |prop|
         expect(@driver).must_respond_to prop
       end
 
@@ -61,7 +61,7 @@ xdescribe "Driver class" do
   describe "average_rating method" do
     before do
       @driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
-      trip = RideShare::Trip.new({id: 8, driver: @driver, passenger: nil, date: "2016-08-08", rating: 5})
+      trip = RideShare::Trip.new(id: 8, driver: @driver, passenger: nil, date: "2016-08-08", rating: 5)
       @driver.add_trip(trip)
     end
 
@@ -79,5 +79,17 @@ xdescribe "Driver class" do
       driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
       expect(driver.average_rating).must_equal 0
     end
+  end
+
+  describe "average_rating" do
+    # You add tests for the average_rating method
+  end
+
+  describe "total_revenue" do
+    # You add tests for the total_revenue method
+  end
+
+  describe "net_expenditures" do
+    # You add tests for the net_expenditures method
   end
 end
