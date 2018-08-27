@@ -4,6 +4,7 @@ Remember the ride share exercise we did with designing and creating a system to 
 Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
 This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) pair project.
+This project is due **Friday August 31st by the end of the day**
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
