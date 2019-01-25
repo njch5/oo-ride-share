@@ -19,9 +19,12 @@ module RideShare
         file_name = class_name.downcase + 's.csv'
       end
 
-      return CSV.read(file_name, headers: true, header_converters: :symbol, converters: :numeric).map do |record|
-        self.from_csv(record)
-      end
+      return CSV.read(
+        file_name,
+        headers: true,
+        header_converters: :symbol,
+        converters: :numeric
+      ).map { |record| from_csv(record) }
     end
 
     def self.validate_id(id)
