@@ -1,7 +1,4 @@
 require 'csv'
-require 'time'
-
-require 'pry'
 
 module RideShare
   class CsvRecord
@@ -44,7 +41,7 @@ module RideShare
     end
 
     private
-    def self.from_csv
+    def self.from_csv(record)
       raise NotImplementedError, 'Implement me in a child class!'
     end
   end
