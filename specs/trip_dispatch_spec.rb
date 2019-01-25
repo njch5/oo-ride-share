@@ -1,18 +1,14 @@
 require_relative 'spec_helper'
 
-PASSENGER_TEST_FILE   = 'specs/test_data/passengers_test.csv'
-TRIP_TEST_FILE   = 'specs/test_data/trips_test.csv'
-DRIVER_TEST_FILE = 'specs/test_data/drivers_test.csv'
-
-def build_dispatcher
-  return RideShare::TripDispatcher.new(
-    driver_file: DRIVER_TEST_FILE,
-    passenger_file: PASSENGER_TEST_FILE,
-    trip_file: TRIP_TEST_FILE
-  )
-end
+TEST_DATA_DIRECTORY = 'specs/test_data'
 
 describe "TripDispatcher class" do
+  def build_dispatcher
+    return RideShare::TripDispatcher.new(
+      directory: TEST_DATA_DIRECTORY
+    )
+  end
+
   describe "Initializer" do
     it "is an instance of TripDispatcher" do
       dispatcher = build_dispatcher
@@ -29,91 +25,101 @@ describe "TripDispatcher class" do
       expect(dispatcher.passengers).must_be_kind_of Array
       # expect(dispatcher.drivers).must_be_kind_of Array
     end
-  end
 
-  describe "find_passenger method" do
-    before do
-      @dispatcher = build_dispatcher
-    end
+    it "loads the development data by default" do
+      # Count lines in the file, subtract 1 for headers
+      trip_count = %x{wc -l 'support/trips.csv'}.split(' ').first.to_i - 1
 
-    it "throws an argument error for a bad ID" do
-      expect{ @dispatcher.find_passenger(0) }.must_raise ArgumentError
-    end
-
-    it "finds a passenger instance" do
-      passenger = @dispatcher.find_passenger(2)
-      expect(passenger).must_be_kind_of RideShare::Passenger
+      dispatcher = RideShare::TripDispatcher.new
+      
+      expect(dispatcher.trips.length).must_equal trip_count
     end
   end
 
+  describe "passengers" do
+    describe "find_passenger method" do
+      before do
+        @dispatcher = build_dispatcher
+      end
 
-  # Uncomment for Wave 2
-  # describe "find_driver method" do
-  #   before do
-  #     @dispatcher = build_dispatcher
-  #   end
-  #
-  #   it "throws an argument error for a bad ID" do
-  #     expect { @dispatcher.find_driver(0) }.must_raise ArgumentError
-  #   end
-  #
-  #   it "finds a driver instance" do
-  #     driver = @dispatcher.find_driver(2)
-  #     expect(driver).must_be_kind_of RideShare::Driver
-  #   end
-  # end
+      it "throws an argument error for a bad ID" do
+        expect{ @dispatcher.find_passenger(0) }.must_raise ArgumentError
+      end
 
-  describe "Driver & Trip loader methods" do
-    before do
-      @dispatcher = build_dispatcher
+      it "finds a passenger instance" do
+        passenger = @dispatcher.find_passenger(2)
+        expect(passenger).must_be_kind_of RideShare::Passenger
+      end
     end
 
-    it "accurately loads driver information into drivers array" do
-      skip # Unskip After Wave 2
-      first_driver = @dispatcher.drivers.first
-      last_driver = @dispatcher.drivers.last
+    describe "Passenger & Trip loader methods" do
+      before do
+        @dispatcher = build_dispatcher
+      end
 
-      expect(first_driver.name).must_equal "Driver2"
-      expect(first_driver.id).must_equal 2
-      expect(first_driver.status).must_equal :UNAVAILABLE
-      expect(last_driver.name).must_equal "Driver8"
-      expect(last_driver.id).must_equal 8
-      expect(last_driver.status).must_equal :AVAILABLE
-    end
+      it "accurately loads passenger information into passengers array" do
+        first_passenger = @dispatcher.passengers.first
+        last_passenger = @dispatcher.passengers.last
 
-    it "Connects drivers with trips" do
-      skip # Unskip after wave 2
-      trips = @dispatcher.trips
+        expect(first_passenger.name).must_equal "User1"
+        expect(first_passenger.id).must_equal 1
+        expect(last_passenger.name).must_equal "Driver8"
+        expect(last_passenger.id).must_equal 8
+      end
 
-      [trips.first, trips.last].each do |trip|
-        driver = trip.driver
-        expect(driver).must_be_instance_of RideShare::Driver
-        expect(driver.trips).must_include trip
+      it "connects trips and passengers" do
+        dispatcher = build_dispatcher
+        dispatcher.trips.each do |trip|
+          expect(trip.passenger).wont_be_nil
+          expect(trip.passenger.id).must_equal trip.passenger_id
+          expect(trip.passenger.trips).must_include trip
+        end
       end
     end
   end
 
-  describe "Passenger & Trip loader methods" do
-    before do
-      @dispatcher = build_dispatcher
+  # TODO: un-skip for Wave 2
+  xdescribe "drivers" do
+    describe "find_driver method" do
+      before do
+        @dispatcher = build_dispatcher
+      end
+    
+      it "throws an argument error for a bad ID" do
+        expect { @dispatcher.find_driver(0) }.must_raise ArgumentError
+      end
+    
+      it "finds a driver instance" do
+        driver = @dispatcher.find_driver(2)
+        expect(driver).must_be_kind_of RideShare::Driver
+      end
     end
 
-    it "accurately loads passenger information into passengers array" do
-      first_passenger = @dispatcher.passengers.first
-      last_passenger = @dispatcher.passengers.last
+    describe "Driver & Trip loader methods" do
+      before do
+        @dispatcher = build_dispatcher
+      end
 
-      expect(first_passenger.name).must_equal "User1"
-      expect(first_passenger.id).must_equal 1
-      expect(last_passenger.name).must_equal "Driver8"
-      expect(last_passenger.id).must_equal 8
-    end
+      it "accurately loads driver information into drivers array" do
+        first_driver = @dispatcher.drivers.first
+        last_driver = @dispatcher.drivers.last
 
-    it "accurately loads trip info and associates trips with passengers" do
-      trip = @dispatcher.trips.first
-      passenger = trip.passenger
+        expect(first_driver.name).must_equal "Driver2"
+        expect(first_driver.id).must_equal 2
+        expect(first_driver.status).must_equal :UNAVAILABLE
+        expect(last_driver.name).must_equal "Driver8"
+        expect(last_driver.id).must_equal 8
+        expect(last_driver.status).must_equal :AVAILABLE
+      end
 
-      expect(passenger).must_be_instance_of RideShare::Passenger
-      expect(passenger.trips).must_include trip
+      it "connects trips and drivers" do
+        dispatcher = build_dispatcher
+        dispatcher.trips.each do |trip|
+          expect(trip.driver).wont_be_nil
+          expect(trip.driver.id).must_equal trip.driver_id
+          expect(trip.driver.trips).must_include trip
+        end
+      end
     end
   end
 end

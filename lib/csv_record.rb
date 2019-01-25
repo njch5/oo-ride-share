@@ -12,15 +12,25 @@ module RideShare
       @id = id
     end
     
-    def self.load_all(file_name=nil)
-      # TODO DPR: make this less fancy
-      unless file_name
-        class_name = self.class.to_s.split('::').last
-        file_name = class_name.downcase + 's.csv'
+    # Takes either full_path or directory and optional file_name
+    # Default file name matches class name
+    def self.load_all(full_path: nil, directory: nil, file_name: nil)
+      # TODO DPR: add comprehension question
+      unless full_path
+        unless directory
+          raise ArgumentError, "Either full_path or directory is required"
+        end
+
+        unless file_name
+          class_name = self.to_s.split('::').last
+          file_name = "#{class_name.downcase}s.csv"
+        end
+
+        full_path = "#{directory}/#{file_name}"
       end
 
       return CSV.read(
-        file_name,
+        full_path,
         headers: true,
         header_converters: :symbol,
         converters: :numeric

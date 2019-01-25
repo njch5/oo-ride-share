@@ -8,9 +8,9 @@ module RideShare
   class TripDispatcher
     attr_reader :drivers, :passengers, :trips
 
-    def initialize(driver_file: nil, passenger_file: nil, trip_file: nil)
-      @passengers = Passenger.load_all(passenger_file)
-      @trips = Trip.load_all(trip_file)
+    def initialize(directory: './support')
+      @passengers = Passenger.load_all(directory: directory)
+      @trips = Trip.load_all(directory: directory)
       connect_trips()
     end
 
