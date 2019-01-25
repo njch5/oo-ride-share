@@ -62,17 +62,31 @@ describe RideShare::CsvRecord do
         @name = name
       end
 
+      def self.load_all(*args, **kwargs)
+        @call_count = 0
+        super
+      end
+
       def self.from_csv(record)
         new(**record)
+        @call_count ||= 0
+        @call_count += 1
+      end
+
+      class << self
+        attr_reader :call_count
       end
     end
 
     describe 'load_all' do
-      it 'finds data given a directory' do
+      let(:record_count) {
+        %x{wc -l 'specs/test_data/testrecords.csv'}.split(' ').first.to_i - 1
+      }
+      it 'finds data given just a directory' do
         directory = 'specs/test_data'
         records = TestRecord.load_all(directory: directory)
 
-        expect(records.length).must_equal 2
+        expect(records.length).must_equal record_count
       end
 
       it 'finds data given a directory and filename' do
@@ -80,14 +94,20 @@ describe RideShare::CsvRecord do
         file_name = 'custom_filename_test.csv'
         records = TestRecord.load_all(directory: directory, file_name: file_name)
 
-        expect(records.length).must_equal 2
+        expect(records.length).must_equal record_count
       end
 
       it 'finds data given a full path' do
         path = 'specs/test_data/custom_filename_test.csv'
         records = TestRecord.load_all(full_path: path)
 
-        expect(records.length).must_equal 2
+        expect(records.length).must_equal record_count
+      end
+
+      it 'calls `from_csv` for each record in the file' do
+        TestRecord.load_all(directory: 'specs/test_data')
+
+        expect(TestRecord.call_count).must_equal record_count
       end
     end
   end
