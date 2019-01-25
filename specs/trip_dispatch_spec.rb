@@ -1,19 +1,26 @@
 require_relative 'spec_helper'
 
-USER_TEST_FILE   = 'specs/test_data/users_test.csv'
+PASSENGER_TEST_FILE   = 'specs/test_data/passengers_test.csv'
 TRIP_TEST_FILE   = 'specs/test_data/trips_test.csv'
 DRIVER_TEST_FILE = 'specs/test_data/drivers_test.csv'
+
+def build_dispatcher
+  return RideShare::TripDispatcher.new(
+    driver_file: DRIVER_TEST_FILE,
+    passenger_file: PASSENGER_TEST_FILE,
+    trip_file: TRIP_TEST_FILE
+  )
+end
 
 describe "TripDispatcher class" do
   describe "Initializer" do
     it "is an instance of TripDispatcher" do
-      dispatcher = RideShare::TripDispatcher.new(USER_TEST_FILE,
-                                                 TRIP_TEST_FILE)
+      dispatcher = build_dispatcher
       expect(dispatcher).must_be_kind_of RideShare::TripDispatcher
     end
 
     it "establishes the base data structures when instantiated" do
-      dispatcher = RideShare::TripDispatcher.new
+      dispatcher = build_dispatcher
       [:trips, :passengers].each do |prop|
         expect(dispatcher).must_respond_to prop
       end
@@ -24,18 +31,18 @@ describe "TripDispatcher class" do
     end
   end
 
-  describe "find_user method" do
+  describe "find_passenger method" do
     before do
-      @dispatcher = RideShare::TripDispatcher.new
+      @dispatcher = build_dispatcher
     end
 
     it "throws an argument error for a bad ID" do
       expect{ @dispatcher.find_passenger(0) }.must_raise ArgumentError
     end
 
-    it "finds a user instance" do
+    it "finds a passenger instance" do
       passenger = @dispatcher.find_passenger(2)
-      expect(passenger).must_be_kind_of RideShare::User
+      expect(passenger).must_be_kind_of RideShare::Passenger
     end
   end
 
@@ -43,7 +50,7 @@ describe "TripDispatcher class" do
   # Uncomment for Wave 2
   # describe "find_driver method" do
   #   before do
-  #     @dispatcher = RideShare::TripDispatcher.new
+  #     @dispatcher = build_dispatcher
   #   end
   #
   #   it "throws an argument error for a bad ID" do
@@ -58,8 +65,7 @@ describe "TripDispatcher class" do
 
   describe "Driver & Trip loader methods" do
     before do
-      @dispatcher = RideShare::TripDispatcher.new(USER_TEST_FILE,
-                                                 TRIP_TEST_FILE)
+      @dispatcher = build_dispatcher
     end
 
     it "accurately loads driver information into drivers array" do
@@ -87,10 +93,9 @@ describe "TripDispatcher class" do
     end
   end
 
-  describe "User & Trip loader methods" do
+  describe "Passenger & Trip loader methods" do
     before do
-      @dispatcher = RideShare::TripDispatcher.new(USER_TEST_FILE,
-                                                  TRIP_TEST_FILE)
+      @dispatcher = build_dispatcher
     end
 
     it "accurately loads passenger information into passengers array" do
@@ -107,7 +112,7 @@ describe "TripDispatcher class" do
       trip = @dispatcher.trips.first
       passenger = trip.passenger
 
-      expect(passenger).must_be_instance_of RideShare::User
+      expect(passenger).must_be_instance_of RideShare::Passenger
       expect(passenger.trips).must_include trip
     end
   end
