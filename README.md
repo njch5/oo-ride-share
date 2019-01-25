@@ -8,10 +8,25 @@ This project is due **Friday August 31st by the end of the day**
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
--   Creating and instantiating classes with attributes
--   Writing pseudocode and creating tests to drive the creation of our code
--   Using Inheritance to extend classes
--   Using Composition to add functionality to classes
+- Creating and instantiating classes with attributes
+- Writing pseudocode and creating tests to drive the creation of our code
+- Using Inheritance to extend classes
+- Using Composition to add functionality to classes
+
+# Dan's Notes
+
+Remove or abridge the `Context` section
+To the baseline or setup or whatever section, add comprehension questions, to be answered with your partner:
+- You can experiment with the code in pry with `pry -r ./lib/trip_dispatcher.rb`, then `td = RideShare::TripDispatcher.new`
+- What classes are there in this project?
+- What _inheritance_ relations exist between classes?
+- What _composition_ relations exist between classes?
+- Draw a class diagram that contains all of the above relations.
+- Why doesn't `Passenger` or `Trip` need an `attr_reader` for `id`?
+- Why does the version of `from_csv` in `CsvRecord` raise a `NotImplementedError`? What does this mean? Why don't we hit that when we run the code?
+- Why is `from_csv` a private method?
+- How does `CsvRecord.load_all` know what CSV file to open? 
+- When you call `Passenger.load_all`, what happens? What methods are called in what order?
 
 
 ## Context
