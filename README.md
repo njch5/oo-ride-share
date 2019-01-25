@@ -1,4 +1,38 @@
 # Ride Share
+
+# <Dan's Notes>
+
+## General
+
+Possibly remove or abridge the `Context` section. Certainly needs to be rewritten.
+
+## Comprehension Questions
+
+To the baseline or setup or whatever section, add comprehension questions, to be answered with your partner:
+- You can experiment with the code in pry with `pry -r ./lib/trip_dispatcher.rb`, then `td = RideShare::TripDispatcher.new`
+- **Classes and Relationships:**
+  - What classes are there in this project?
+  - What _inheritance_ relations exist between classes?
+  - What _composition_ relations exist between classes?
+  - Draw a class diagram that contains all of the above relations.
+- **Code:**
+  - Why doesn't `Passenger` or `Trip` need an `attr_reader` for `id`?
+  - Why does the version of `from_csv` in `CsvRecord` raise a `NotImplementedError`? What does this mean? Why don't we hit that when we run the code?
+  - Why is `from_csv` a private method?
+  - How does `CsvRecord.load_all` know what CSV file to open? 
+  - When you call `Passenger.load_all`, what happens? What methods are called in what order?
+
+## Waves
+
+**Wave 1:** Basically the same, implementing small improvements. Go through and double check for clarity / consistency. s/user/passenger/g
+
+**Wave 2:** Implement `Driver`. Will need substantial changes to the writeup, since the inheritance model is very different. Should be much easier, since they're basically mirroring `Passenger` - good opportunity to work out the sticky pieces of inheritance in a controlled way.
+
+**Waves 3 and 4:** Pretty much the same. Probably still keep wave 4 optional.
+
+# </Dan's Notes>
+
+
 Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise!
 
 Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
@@ -12,22 +46,6 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 - Writing pseudocode and creating tests to drive the creation of our code
 - Using Inheritance to extend classes
 - Using Composition to add functionality to classes
-
-# Dan's Notes
-
-Remove or abridge the `Context` section
-To the baseline or setup or whatever section, add comprehension questions, to be answered with your partner:
-- You can experiment with the code in pry with `pry -r ./lib/trip_dispatcher.rb`, then `td = RideShare::TripDispatcher.new`
-- What classes are there in this project?
-- What _inheritance_ relations exist between classes?
-- What _composition_ relations exist between classes?
-- Draw a class diagram that contains all of the above relations.
-- Why doesn't `Passenger` or `Trip` need an `attr_reader` for `id`?
-- Why does the version of `from_csv` in `CsvRecord` raise a `NotImplementedError`? What does this mean? Why don't we hit that when we run the code?
-- Why is `from_csv` a private method?
-- How does `CsvRecord.load_all` know what CSV file to open? 
-- When you call `Passenger.load_all`, what happens? What methods are called in what order?
-
 
 ## Context
 We have a code base that already pulls data from CSV files and turns them into collections of the following objects:
