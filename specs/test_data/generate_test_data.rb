@@ -16,7 +16,7 @@ drivers = [
   { id: 8, vin: '1C6CF40K1J3Y74UY2', status: 'AVAILABLE' }
 ]
 passengers = [
-  { id: 1, name: 'Passegner1', phone_num: '111-111-1111' },
+  { id: 1, name: 'Passenger1', phone_num: '111-111-1111' },
   { id: 2, name: 'Driver2', phone_num: '111-111-1112' },
   { id: 3, name: 'Passegner3', phone_num: '111-111-1113' },
   { id: 4, name: 'Passegner4', phone_num: '111-111-1114' },
