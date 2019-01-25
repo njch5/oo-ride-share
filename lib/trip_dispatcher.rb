@@ -16,9 +16,8 @@ module RideShare
 
     def connect_trips()
       @trips.each do |trip|
-        driver = nil # find_driver(trip.driver_id)
         passenger = find_passenger(trip.passenger_id)
-        trip.connect(driver, passenger)
+        trip.connect(passenger)
       end
 
       return trips
