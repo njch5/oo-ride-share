@@ -5,7 +5,7 @@ require 'awesome_print'
 
 driver_csv = CSV.open('./drivers.csv', 'w+', write_headers: true, headers: ['id', 'vin', 'status'])
 
-passenger_csv = CSV.open('./users.csv', 'w+', write_headers: true, headers: ['id', 'name', 'phone_num'])
+passenger_csv = CSV.open('./passengers.csv', 'w+', write_headers: true, headers: ['id', 'name', 'phone_num'])
 
 drivers = []
 passengers = []
@@ -15,7 +15,7 @@ passengers = []
   phone_num = Faker::PhoneNumber.cell_phone
   id += 1
 
-  user_hash = {'id' => id, 'name' => name, 'phone_num' => phone_num}
+  passenger_hash = {'id' => id, 'name' => name, 'phone_num' => phone_num}
   driver_hash = {'id' => id}
   if rand(0..10) < 2
     driver_hash['vin'] = Faker::Vehicle.vin
@@ -23,8 +23,8 @@ passengers = []
     driver_csv << driver_hash
     drivers << driver_hash
   end
-  passenger_csv << user_hash
-  passengers << user_hash
+  passenger_csv << passenger_hash
+  passengers << passenger_hash
 end
 
 trips_csv = CSV.open('./trips.csv', 'w+', write_headers: true, headers: ['id', 'driver_id', 'passenger_id', 'start_time', 'end_time', 'cost', 'rating'])

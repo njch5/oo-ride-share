@@ -1,11 +1,11 @@
 require 'csv'
 
-driver_csv = CSV.open('./drivers_test.csv', 'w+',
+driver_csv = CSV.open('./drivers.csv', 'w+',
                       write_headers: true, headers: [:id, :vin, :status])
-passenger_csv = CSV.open('./users_test.csv', 'w+',
+passenger_csv = CSV.open('./passengers.csv', 'w+',
                          write_headers: true,
                          headers: [:id, :name, :phone_num])
-trips_csv = CSV.open('./trips_test.csv', 'w+',
+trips_csv = CSV.open('./trips.csv', 'w+',
                      write_headers: true,
                      headers: [:id, :driver_id, :passenger_id, :start_time,
                                :end_time, :cost, :rating])
@@ -16,13 +16,13 @@ drivers = [
   { id: 8, vin: '1C6CF40K1J3Y74UY2', status: 'AVAILABLE' }
 ]
 passengers = [
-  { id: 1, name: 'User1', phone_num: '111-111-1111' },
+  { id: 1, name: 'Passegner1', phone_num: '111-111-1111' },
   { id: 2, name: 'Driver2', phone_num: '111-111-1112' },
-  { id: 3, name: 'User3', phone_num: '111-111-1113' },
-  { id: 4, name: 'User4', phone_num: '111-111-1114' },
+  { id: 3, name: 'Passegner3', phone_num: '111-111-1113' },
+  { id: 4, name: 'Passegner4', phone_num: '111-111-1114' },
   { id: 5, name: 'Driver5', phone_num: '111-111-1115' },
-  { id: 6, name: 'User6', phone_num: '111-111-1116' },
-  { id: 7, name: 'User7', phone_num: '111-111-1117' },
+  { id: 6, name: 'Passegner6', phone_num: '111-111-1116' },
+  { id: 7, name: 'Passegner7', phone_num: '111-111-1117' },
   { id: 8, name: 'Driver8', phone_num: '111-111-1118' }
 ]
 
