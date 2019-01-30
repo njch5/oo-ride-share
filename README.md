@@ -211,104 +211,46 @@ After each `Trip` has a reference to its `Driver` and `TripDispatcher` can load 
 
 **All the new methods above should have tests**
 
-### Optional: Wave X
+#### Aside: More OO Design
 
-Could have details about an optional wave.
+<details>
+<summary>Expand for musings on object-oriented design</summary>
+You may notice that `Driver` and `Passenger` share a lot of traits, especially the ability to work with a list of trips. If we were to flesh this library out more, you could imagine having a lot of repeated code. Addressing this problem is an interesting challenge.
 
-## Functional Requirements
+One way we could DRY this up is through more inheritance (perhaps a `TripTaker` class), but inheritance is a little heavy-handed for our purposes. A more appropriate technique might be to use a module to include common behavior - this is the topic of POODR chapter 7.
 
-Based on where students are in the curriculum, projects will either have "Implementation Requirements" or "Functional Requirements"
+For right now, we'll just let `Passenger` and `Driver` have some repeated code.
+</details>
 
-### Wave 1
+### Wave 3: Requesting a Trip
 
-Could have Wave 1 details. Ideally/depending on timing, details will be in User Story format ( As a < type of user >, I want < some goal > so that < some reason >. )
+Our program needs a way to make new trips and appropriately assign a driver and passenger.
 
-### Wave 2
-
-Could have Wave 2 details.
-
-### Optional: Wave X
-
-Could have details about an optional wave.
-
-## Non-Functional Requirements
-
-These requirements are not tied to features/feature-development.
-
-## Optional Enhancements
-
-Sometimes there are a list of optional enhancements that aren't necessarily in the form of a wave, but a list:
-
-- Lorem ipsum
-- Dolor sit amet
-
-## What Instructors Are Looking For
-Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
-
-
-
-
-
-
-# <Dan's Notes>
-
-## General
-
-Possibly remove or abridge the `Context` section. Certainly needs to be rewritten.
-
-## Comprehension Questions
-
-To the baseline or setup or whatever section, add comprehension questions, to be answered with your partner:
-
-
-## Waves
-
-**Wave 1:** Basically the same, implementing small improvements. Go through and double check for clarity / consistency. s/user/passenger/g
-
-**Wave 2:** Implement `Driver`. Will need substantial changes to the writeup, since the inheritance model is very different. Should be much easier, since they're basically mirroring `Passenger` - good opportunity to work out the sticky pieces of inheritance in a controlled way.
-
-**Waves 3 and 4:** Pretty much the same. Probably still keep wave 4 optional.
-
-# </Dan's Notes>
-
-
-
-
-
-
-
-
-
-
-# Wave 3
-
-Our program needs a way to make new trips and appropriately assign a driver and user.
-
-This logic will be handled by our `TripDispatcher` in a new instance method: `TripDispatcher#request_trip(user_id)`. When we create a new trip with this method, the following will be true:
--   The user ID will be supplied (this is the person requesting a trip)
--   Your code should automatically assign a driver to the trip
- -   For this initial version, choose the first driver whose status is `:AVAILABLE`
--   Your code should use the current time for the start time
--   The end date, cost and rating will all be `nil`
-  -   The trip hasn't finished yet!
+This logic will be handled by our `TripDispatcher` in a new instance method: `TripDispatcher#request_trip(passenger_id)`. When we create a new trip with this method, the following will be true:
+- The passenger ID will be supplied (this is the person requesting a trip)
+- Your code should automatically assign a driver to the trip
+    - For this initial version, choose the first driver whose status is `:AVAILABLE`
+- Your code should use the current time for the start time
+- The end date, cost and rating will all be `nil`
+    - The trip hasn't finished yet!
 
 You should use this information to:
 
--   Create a new instance of `Trip`
--   Modify this selected driver using a new helper method in `Driver`:
-    -  Add the new trip to the collection of trips for that `Driver`
-    -  Set the driver's status to `:UNAVAILABLE`
--   Modify the passenger for the trip using a new helper method in `User`
-    - Add the new trip to the collection of trips for the passenger in `User`
--   Add the new trip to the collection of all `Trip`s in `TripDispatcher`
--   Return the newly created trip
+- Create a new instance of `Trip`
+- Modify this selected driver using a new helper method in `Driver`:
+    - Add the new trip to the collection of trips for that `Driver`
+    - Set the driver's status to `:UNAVAILABLE`
+- Modify the passenger for the trip using a new helper method in `Passenger`
+    -Add the new trip to the collection of trips for the passenger in `Passenger`
+- Add the new trip to the collection of all `Trip`s in `TripDispatcher`
+- Return the newly created trip
 
 **All of this code must have tests.** Things to pay attention to:
--   Was the trip created properly?
--   Were the trip lists for the driver and user updated?
--   Was the driver who was selected `AVAILABLE`?
--   What happens if you try to request a trip when there are no `AVAILABLE` drivers?
--   Drivers cannot drive themselves
+- Was the trip created properly?
+- Were the trip lists for the driver and passenger updated?
+- Was the driver who was selected `AVAILABLE`?
+- What happens if you try to request a trip when there are no `AVAILABLE` drivers?
+- Drivers cannot drive themselves
 
 #### Interaction with Waves 1 & 2
 
@@ -316,9 +258,11 @@ One thing you may notice is that **this change breaks your code** from previous 
 
 Your code from waves 1 & 2 should _ignore_ any in-progress trips. That is to say, any trip where the end time is `nil` should not be included in your totals.
 
-You should also **add explicit tests** for this new situation. For example, what happens if you attempt to calculate the total money spent for a `User` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
+You should also **add explicit tests** for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average rating of a `Driver` with an in-progress trip?
 
-### Wave 4
+### Optional Wave 4: Intelligent Dispatching
+
+**This wave is optional!** Don't even look at it until you're sure your code from the previous waves meets every requirement!
 
 We want to evolve `TripDispatcher` so it assigns drivers in more intelligent ways. Every time we make a new trip, we want to pick drivers who haven't completed a trip in a long time, or who have never been assigned a trip.
 
