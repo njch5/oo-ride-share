@@ -22,7 +22,6 @@ module RideShare
         raise ArgumentError, 'Passenger or passenger_id is required'
       end
 
-      # @driver_id = driver_id
       @start_time = start_time
       @end_time = end_time
       @cost = cost
