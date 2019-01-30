@@ -21,7 +21,7 @@ end
 driver_csv = CSV.open('./drivers.csv', 'w+', write_headers: true, headers: ['id', 'name', 'vin', 'status'])
 30.times do |id|
   driver_hash = {
-    'id' => id,
+    'id' => id + 1,
     'name' => Faker::Artist.name,
     'vin' => Faker::Vehicle.vin,
     'status' => rand(0..10) < 3 ? :UNAVAILABLE : :AVAILABLE
@@ -35,7 +35,6 @@ drivers_with_trips = drivers.reject { |d| d['id'] % 5 == 1 }
 
 trips_csv = CSV.open('./trips.csv', 'w+', write_headers: true, headers: ['id', 'driver_id', 'passenger_id', 'start_time', 'end_time', 'cost', 'rating'])
 600.times do |id|
-  id += 1
   driver = drivers_with_trips.sample['id']
   passenger = passengers.sample['id']
 
@@ -44,7 +43,7 @@ trips_csv = CSV.open('./trips.csv', 'w+', write_headers: true, headers: ['id', '
   cost = rand(5..30)
   rating = rand(1..5)
   trip_hash = {
-    'id' => id,
+    'id' => id + 1,
     'driver_id' => driver,
     'passenger_id' => passenger,
     'start_time' => start_time,
