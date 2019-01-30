@@ -49,6 +49,9 @@ You should use the following process as much as possible:
 1.  Write code
 1.  Refactor
 
+### Pair Plan
+Come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
+
 ## Setup Requirements
 
 This project comes with a large amount of scaffolding code already written. Before you start writing code, you and your partner should spend some time reading through what's here. Building a strong understanding now will make the rest of the project much smoother.
@@ -211,8 +214,7 @@ To the baseline or setup or whatever section, add comprehension questions, to be
 
 ## Requirements
 
-### Pair Plan
-First, come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
+
 
 ### Baseline
 
