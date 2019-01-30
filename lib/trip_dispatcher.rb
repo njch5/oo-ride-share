@@ -11,16 +11,7 @@ module RideShare
     def initialize(directory: './support')
       @passengers = Passenger.load_all(directory: directory)
       @trips = Trip.load_all(directory: directory)
-      connect_trips()
-    end
-
-    def connect_trips()
-      @trips.each do |trip|
-        passenger = find_passenger(trip.passenger_id)
-        trip.connect(passenger)
-      end
-
-      return trips
+      connect_trips
     end
 
     def find_passenger(id)
@@ -29,10 +20,21 @@ module RideShare
     end
 
     def inspect
-      return "#<#{self.class.name}:0x#{self.object_id.to_s(16)} \
+      return "#<#{self.class.name}:0x#{object_id.to_s(16)} \
               #{trips.count} trips, \
               #{drivers.count} drivers, \
               #{passengers.count} passengers>"
+    end
+
+    private
+
+    def connect_trips
+      @trips.each do |trip|
+        passenger = find_passenger(trip.passenger_id)
+        trip.connect(passenger)
+      end
+
+      return trips
     end
   end
 end
