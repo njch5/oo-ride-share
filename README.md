@@ -161,9 +161,58 @@ Now that we have data for trip time stored in a more convenient way, we can do s
 
 **Each of these methods must have tests.**
 
-### Wave 2
+### Wave 2: Drivers
 
-Could have Wave 2 details.
+Our program needs a data type to represent Drivers in our service.
+
+We will do this by creating a `Driver` class which inherits from `CsvReader`, similar to `Trip` and `Passenger`.  The constructor for `Driver` should take the following parameters:
+
+ Attribute  | Description                                      | Rules                                                                                           
+------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------
+id | Unique number for this driver | Pass to the superclass constructor (similar to `Passenger`).
+ vehicle_id | The driver's Vehicle Identification Number (VIN) | String of length 17. Raise an `ArgumentError` if it's the wrong length.                         
+ status     | Is this `Driver` available to drive?             | Must be one of `:AVAILABLE` or `:UNAVAILABLE`                                                 
+ trips      | A list of trips this driver has driven           | Optional parameter. If not provided, initialize to an empty array (similar to `Passenger`).
+
+**Use the provided tests** to ensure that a `Driver` instance can be created successfully and that an `ArgumentError` is raised for an invalid status.
+
+#### Updating Trip
+
+To make use of the new `Driver` class we will need to update the `Trip` class to include a reference to the trip's driver.  Add the following attributes to the `Trip` class.
+
+ Attribute | Description                                                                                       
+-----------|---------------------------------------------------------------------------------------------------
+ driver_id | The ID of the driver for this trip                                                                
+ driver    | The `Driver` for the trip          p p p p p p p p p p |p p |p p p p p p p p p p p p p p p p p |p p             
+
+Each `Trip` instance should also be able to do the following:
+
+ Method | Description                                                                                              
+--------|----------------------------------------------------------------------------------------------------------
+ driver | retrieve the associated `Driver` instance e e e e e e e e e e |e e |e e e e e e e e e e e e e e e e e |e e    
+
+#### Loading Drivers
+Update the `TripDispatcher` class to add or update the following Methods:
+
+ Method       | Description                                                                                                                                                                                                                                                                        
+--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ load_drivers | Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances.  Drivers are users too!  You will need to find the driver's data from the `passenger` array.  Make sure you replace those instances with instances of Driver.                  
+ find_driver  | This method takes an `id` number and returns the corresponding `Driver` instance.                                                                                                                                                                                                  
+ load_trips   | This method should be updated to add a corresponding `Driver` to the trip instance. . . . . . . . . . . |. . |. . . . . . . . . .                                                                                                                                 . . . . . . . |. .    
+
+#### Driver methods
+
+After each trip has a reference to its `Driver` and TripDispatcher can load a list of `Driver`s, add the following functionality to the `Driver` class:
+
+ Method           | Description                                                                                                                                                                                                                                                                                                          
+------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ add_driven_trip  | This method adds a trip to the driver's collection of trips for which they have acted as a driver                                                                                                                                                                                                                    
+ average_rating   | This method sums up the ratings from all a Driver's trips and returns the average                                                                                                                                                                                                                                    
+ total_revenue    | This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted.                                                                                                                                                        
+ net_expenditures | This method will **override** the corresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money. . . . . . . . . . . |. . |. . . . . . . . . . . . . . . . . |. .    
+
+**All the new methods above should have tests**
+
 
 ### Optional: Wave X
 
@@ -233,55 +282,6 @@ To the baseline or setup or whatever section, add comprehension questions, to be
 
 
 
-### Wave 2
-
-Our program needs a data type to represent Drivers in our service.
-
-We will do this by creating a `Driver` class which inherits from `User`.  A `Driver` will add the following data attributes:
-
-**Attribute**|**Description**
------|-----
-vehicle_id|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length of 17 to ensure it is a valid vehicle identification number
-driven_trips | A list of trips the user has acted as a driver for.
-status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
-
-**Use the provided tests** to ensure that a `Driver` instance can be created successfully and insure that an `ArgumentError` is raised for an invalid status.
-
-#### Updating Trip
-
-To make use of the new `Driver` class we will need to update the `Trip` class to include a reference to the trip's driver.  Add the following attribute to the `Trip` class.
-
-**Attribute**|**Description**
------|-----
-driver|The `Driver` for the trip
-
-Each `Trip` instance should also be able to do the following:
-
-**Method**|**Description**
------|-----
-driver|retrieve the associated `Driver` instance
-
-#### Loading Drivers
-Update the `TripDispatcher` class to add or update the following Methods:
-
-**Method**|**Description**
------|-----
-load_drivers|Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances.  Drivers are users too!  You will need to find the driver's data from the `passenger` array.  Make sure you replace those instances with instances of Driver.
-find_driver |This method takes an `id` number and returns the corresponding `Driver` instance.
-load_trips|This method should be updated to add a corresponding `Driver` to the trip instance.
-
-#### Driver methods
-
-After each trip has a reference to its `Driver` and TripDispatcher can load a list of `Driver`s, add the following functionality to the `Driver` class:
-
-**Method**|**Description**
------|-----
-add_driven_trip  |  This method adds a trip to the driver's collection of trips for which they have acted as a driver
-average_rating  |  This method sums up the ratings from all a Driver's trips and returns the average
-total_revenue  |  This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted.
-net_expenditures|This method will **override** the corresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money.
-
-**All the new methods above should have tests**
 
 # Wave 3
 
@@ -334,11 +334,11 @@ Modify `TripDispatcher#request_trip` to use the following rules to select a `Dri
 
 For example, if we have three drivers, each with two trips:
 
-Driver Name | Status        | Trip 1 end time | Trip 2 end time
----         | ---           | ---             | ---
-Ada         | `AVAILABLE`   | Jan 3, 2018     | Jan 9, 2018
-Katherine   | `AVAILABLE`   | Jan 1, 2018     | Jan 12, 2018
-Grace       | `UNAVAILABLE` | Jan 5, 2018     | `nil`
+ Driver Name | Status        | Trip 1 end time | Trip 2 end time                                                                
+-------------|---------------|-----------------|--------------------------------------------------------------------------------
+ Ada         | `AVAILABLE`   | Jan 3, 2018     | Jan 9, 2018                                                                    
+ Katherine   | `AVAILABLE`   | Jan 1, 2018     | Jan 12, 2018                                                                   
+ Grace       | `UNAVAILABLE` | Jan 5, 2018     | `nil`           ` ` ` ` ` ` ` ` ` ` |` ` |` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` ` |` `              
 
 Grace is excluded because they are not `AVAILABLE`, and because they have one in-progress trip.
 
