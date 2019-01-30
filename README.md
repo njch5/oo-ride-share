@@ -67,7 +67,7 @@ Finished in 0.14685s
 28 tests, 64 assertions, 0 failures, 0 errors, 1 skips
 ```
 
-All the existing code is thoroughly tested; code you write should not break these tests. When you add new functionality to this project, you should add new tests as well.
+All the existing code is thoroughly tested. Some of the code you write for this project will break these tests; when that happens, it is your job to update them. When you add new functionality to this project, you should add new tests as well.
 
 The tests can serve as an example of how the methods and classes should work. If you're ever confused about what one of these methods looks like "from the outside", the tests can serve as your guide.
 
