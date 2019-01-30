@@ -1,7 +1,5 @@
 # Ride Share
 
-# Project Title
-
 ## At a Glance
 
 - Pair, [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md#stage-2) project
@@ -9,14 +7,19 @@
 
 ## Introduction
 
-Set any context/content that needs to be introduced. Examples include:
-- Adagrams needed an introduction to anagrams and game shows
-- Exquisite React needed an introduction to Exquisite Corpse
+Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise!
+
+Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
 ## Learning Goals
 
-- A bulleted list of learning goals
-- Lorem ipsum
+- Reinforce and practice Ruby programming fundamentals, particularly
+  - Creating and instantiating classes with attributes
+  - Using composition to connect different classes together
+  - Working with files and large amounts of data
+  - Writing pseudocode and creating tests to drive the creation of our code
+- Quickly become familiar with a large and complex code base
+- Use inheritance to extend existing classes
 
 ## Objective
 
@@ -130,20 +133,6 @@ To the baseline or setup or whatever section, add comprehension questions, to be
 
 # </Dan's Notes>
 
-
-Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise!
-
-Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
-
-This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) pair project.
-This project is due **Friday August 31st by the end of the day**
-
-## Learning Goals
-Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
-- Creating and instantiating classes with attributes
-- Writing pseudocode and creating tests to drive the creation of our code
-- Using Inheritance to extend classes
-- Using Composition to add functionality to classes
 
 ## Context
 We have a code base that already pulls data from CSV files and turns them into collections of the following objects:
