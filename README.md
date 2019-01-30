@@ -7,7 +7,7 @@
 
 ## Introduction
 
-Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise!
+Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on creating arrays and hashes of data, but we've learned a lot since then!
 
 Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
@@ -23,7 +23,7 @@ Now, we're going to use our understanding of classes, methods and attributes to 
 
 ## Objective
 
-We will build a Ruby library that loads lists of passengers, trips and drivers from CSV files, and provides methods for manipulating this data.
+We will build a Ruby library that loads lists of passengers, trips and drivers from CSV files, provides methods for exploring this data, and provides a way to request a new trip.
 
 We will **not** write an interactive command-line program.
 
@@ -109,13 +109,13 @@ $ pry -r ./lib/trip_dispatcher.rb
 
 ### Comprehension Questions
 
-Before you start writing code, use the above techniques to answer the following questions. If you have questions or run into something that you can't figure out, consult with another group.
+Before you start writing code, you and your partner should work together, using the above techniques to answer the following questions. If you have questions or run into something that you can't figure out, consult with another group.
 
 #### Classes and Relationships
 
 - What _inheritance_ relations exist between classes?
 - What _composition_ relations exist between classes?
-- Did these relations match your prediction earlier?
+- Do these relations match your prediction from earlier?
 - Draw a class diagram that contains all of the above relations.
 
 #### Code Details
@@ -159,7 +159,7 @@ Now that we have data for trip time stored in a more convenient way, we can do s
 1.  Add an instance method, `net_expenditures`, to `Passenger` that will return the _total amount of money_ that passenger has spent on their trips
 1.  Add an instance method,  `total_time_spent` to `Passenger` that will return the _total amount of time_ that passenger has spent on their trips
 
-**Each of these methods must have tests.**
+**Each of these methods must have tests.** What happens if the passenger has no trips?
 
 ### Wave 2: Drivers
 
