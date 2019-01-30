@@ -61,9 +61,9 @@ describe "TripDispatcher class" do
         first_passenger = @dispatcher.passengers.first
         last_passenger = @dispatcher.passengers.last
 
-        expect(first_passenger.name).must_equal "Passenger1"
+        expect(first_passenger.name).must_equal "Passenger 1"
         expect(first_passenger.id).must_equal 1
-        expect(last_passenger.name).must_equal "Driver8"
+        expect(last_passenger.name).must_equal "Passenger 8"
         expect(last_passenger.id).must_equal 8
       end
 
