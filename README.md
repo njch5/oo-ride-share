@@ -165,14 +165,17 @@ Now that we have data for trip time stored in a more convenient way, we can do s
 
 Our program needs a data type to represent Drivers in our service.
 
-We will do this by creating a `Driver` class which inherits from `CsvReader`, similar to `Trip` and `Passenger`.  The constructor for `Driver` should take the following parameters:
+We will do this by creating a `Driver` class which inherits from `CsvReader`, similar to `Trip` and `Passenger`.  The constructor for `Driver` should take the following keyword arguments:
 
-| Attribute | Description                                      | Rules                                                                                      |
-|-----------|--------------------------------------------------|--------------------------------------------------------------------------------------------|
-| id        | Unique number for this driver                    | Pass to the superclass constructor (similar to `Passenger`)                                |
-| vin       | The driver's Vehicle Identification Number (VIN) | String of length 17. Raise an `ArgumentError` if it's the wrong length.                    |
-| status    | Is this `Driver` available to drive?             | Must be one of `:AVAILABLE` or `:UNAVAILABLE`                                              |
-| trips     | A list of trips this driver has driven           | Optional parameter. If not provided, initialize to an empty array (similar to `Passenger`) |
+| Attribute | Description                                      | Rules                                                                            |
+|-----------|--------------------------------------------------|----------------------------------------------------------------------------------|
+| `id`      | Unique number for this driver                    | Pass to the superclass constructor (similar to `Passenger`)                      |
+| `name`    | This driver's name                               |                                                                                  |
+| `vin`     | The driver's Vehicle Identification Number (VIN) | String of length 17. Raise an `ArgumentError` if it's the wrong length.          |
+| `status`  | Is this `Driver` available to drive?             | Must be one of `:AVAILABLE` or `:UNAVAILABLE`                                    |
+| `trips`   | A list of trips this driver has driven           | Optional, if not provided, initialize to an empty array (similar to `Passenger`) |
+
+Since `Driver` inherits from `CsvRecord`, you'll need to implement the `from_csv` template method. Once you do, `Driver.load_all` should work (test this in pry).
 
 **Use the provided tests** to ensure that a `Driver` instance can be created successfully and that an `ArgumentError` is raised for an invalid status.
 
@@ -180,42 +183,33 @@ We will do this by creating a `Driver` class which inherits from `CsvReader`, si
 
 To make use of the new `Driver` class we will need to update the `Trip` class to include a reference to the trip's driver.  Add the following attributes to the `Trip` class.
 
-| Attribute | Description                        |
-|-----------|------------------------------------|
-| driver_id | The ID of the driver for this trip |
-| driver    | The `Driver` for the trip          |
+| Attribute   | Description                        |
+|-------------|------------------------------------|
+| `driver_id` | The ID of the driver for this trip |
+| `driver`    | The `Driver` instance for the trip |
 
-Each `Trip` instance should also be able to do the following:
+When a `Trip` is constructed, either `driver_id` or `driver` must be provided.
 
-| Method | Description                               |
-|--------|-------------------------------------------|
-| driver | retrieve the associated `Driver` instance | 
-
-
-**Note:** if you have changed the method signature of the constructor for `Trip`, some of your tests may now be failing. Go fix them!
+**Note:** You have changed the method signature of the constructor for `Trip`. Some of your tests may now be failing. Go fix them!
 
 #### Loading Drivers
-Update the `TripDispatcher` class to add or update the following Methods:
+Update the `TripDispatcher` class as follows:
 
-| Method       | Description                                                                                                                                                                                                                                                       |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| load_drivers | Load the Drivers from the `support/drivers.csv` file and return a collection of `Driver` instances.  Drivers are users too!  You will need to find the driver's data from the `passenger` array.  Make sure you replace those instances with instances of Driver. |
-| find_driver  | This method takes an `id` number and returns the corresponding `Driver` instance.                                                                                                                                                                                 |
-| load_trips   | This method should be updated to add a corresponding `Driver` to the trip instance.                                                                                                                                                                               |
+- In the constructor, call `Driver.load_all` and save the result in an instance variable
+- Update the `connect_trips` method to connect the driver as well as the passenger
+- Add a `find_driver` method that looks up a driver by ID
 
 #### Driver methods
 
-After each trip has a reference to its `Driver` and TripDispatcher can load a list of `Driver`s, add the following functionality to the `Driver` class:
+After each `Trip` has a reference to its `Driver` and `TripDispatcher` can load a list of `Driver`s, add the following functionality to the `Driver` class:
 
-| Method           | Description                                                                                                                                                                                                                                          |
-|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add_driven_trip  | This method adds a trip to the driver's collection of trips for which they have acted as a driver                                                                                                                                                    |
-| average_rating   | This method sums up the ratings from all a Driver's trips and returns the average                                                                                                                                                                    |
-| total_revenue    | This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted.                                                                                        |
-| net_expenditures | This method will **override** the corresponding method in `User` and take the total amount a driver has spent as a passenger and subtract the amount they have earned as a driver (see above).  If the number is negative the driver will earn money |
+| Method         | Description                                                                                                                                                   | Test Cases                                                                                                                                    |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| add_trip       | Add a trip to the driver's list of trips                                                                                                                      | Try adding a trip                                                                                                                             |
+| average_rating | What is this driver's average rating?                                                                                                                         | What if there are no trips?<br><br>Does it handle floating point division correctly? For example the average of 2 and 3 should be 2.5, not 2. |
+| total_revenue  | This method calculates that driver's total revenue across all their trips. Each driver gets 80% of the trip cost after a fee of $1.65 per trip is subtracted. | What if there are no trips?<br><br>What if the cost of a trip was less that $1.65?                                                            |
 
 **All the new methods above should have tests**
-
 
 ### Optional: Wave X
 
