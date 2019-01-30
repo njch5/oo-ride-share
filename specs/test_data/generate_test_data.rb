@@ -31,7 +31,7 @@ trips = [
     start_time: '2018-05-25 11:52:40 -0700',
     end_time: '2018-05-25 12:25:00 -0700', cost: 10, rating: 5 },
   { id: 2, driver_id: 2, passenger_id: 3,
-    start_time: '2018-07-23 04:39:00 -0700',
+    start_time: '2018-05-25 04:39:00 -0700',
     end_time: '2018-05-25 04:55:00 -0700', cost: 7, rating: 3 },
   { id: 3, driver_id: 5, passenger_id: 4,
     start_time: '2018-06-11 22:22:00 -0700',

@@ -11,8 +11,8 @@ describe "Trip class" do
         passenger: RideShare::Passenger.new(id: 1,
                                        name: "Ada",
                                        phone_number: "412-432-7640"),
-        start_time: start_time,
-        end_time: end_time,
+        start_time: start_time.to_s,
+        end_time: end_time.to_s,
         cost: 23.45,
         rating: 3
       }
