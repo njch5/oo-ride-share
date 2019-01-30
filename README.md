@@ -137,9 +137,29 @@ Using the pry session we started above, how would you...
 
 ## Implementation Requirements
 
-### Wave 1
+### Wave 1: Extending Existing Classes
 
-Could have Wave 1 details. Ideally/depending on timing, details will be in User Story format ( As a < type of user >, I want < some goal > so that < some reason >. )
+The purpose of Wave 1 is to help you become familiar with the existing code, and to practice working with enumerables.
+
+#### 1.1: Upgrading Times
+
+Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `Time` class](https://ruby-doc.org/core-2.5.1/Time.html). You should:
+
+1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
+1.  Modify `Trip#initialize` to turn `start_time` and `end_time` into `Time` instances before saving them
+1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, **and a corresponding test**
+1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, **and a corresponding test**
+
+**Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work.
+
+#### 1.2: User Aggregate Statistics
+
+Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `User`.
+
+1.  Add an instance method, `net_expenditures`, to `User` that will return the _total amount of money_ that user has spent on their trips
+1.  Add an instance method,  `total_time_spent` to `User` that will return the _total amount of time_ that user has spent on their trips
+
+**Each of these methods must have tests.**
 
 ### Wave 2
 
@@ -212,44 +232,6 @@ To the baseline or setup or whatever section, add comprehension questions, to be
 
 
 
-## Requirements
-
-
-
-### Baseline
-
-To start this project, take some time to get familiar with the code. Do the following in this order:
-1. Read through all of the tests
-1. Look at the provided CSV files: `support/drivers.csv`, `support/users.csv`, `support/trips.csv`
-1. Then look through the ruby files in the `lib` folder
-
-Create a diagram that describes how each of these classes and methods (messages) interact with one another as well as with the CSV files.
-
-**Exercise:** Look at this requirement in Wave 1: "For a given user, calculate their total expenditure for all trips". Spend some time writing pseudocode for this.
-
-### Wave 1
-
-The purpose of Wave 1 is to help you become familiar with the existing code, and to practice working with enumerables.
-
-#### 1.1: Upgrading Dates
-
-Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use Ruby's built-in [`Time`](https://ruby-doc.org/core-2.5.1/Time.html) class. You should:
-
-1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
-1.  Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
-1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, **and a corresponding test**
-1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, **and a corresponding test**
-
-**Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work.
-
-#### 1.2: User Aggregate Statistics
-
-Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `User`.
-
-1.  Add an instance method, `net_expenditures`, to `User` that will return the _total amount of money_ that user has spent on their trips
-1.  Add an instance method,  `total_time_spent` to `User` that will return the _total amount of time_ that user has spent on their trips
-
-**Each of these methods must have tests.**
 
 ### Wave 2
 
