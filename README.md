@@ -23,39 +23,114 @@ Now, we're going to use our understanding of classes, methods and attributes to 
 
 ## Objective
 
-We will ... in some technology.
+We will build a Ruby library that loads lists of passengers, trips and drivers from CSV files, and provides methods for manipulating this data.
+
+We will **not** write an interactive command-line program.
 
 ## Getting Started
 
-This section sometimes has subheaders (h3) about different components that need to be set up, read through, and/or understood before beginning. Some examples include:
+We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You will run tests by executing the `rake` command, as configured in a Rakefile.
 
-- Directions about reading through the waves
-- Explanation about the scaffolded code
-- Suggestions about making a strategy
+The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
-It could also include one-time instructions or commands to keep handy, such as:
+### Setup
+1.  You'll be working with an assigned pair. High-five your pair.
+1.  Choose **one** person to fork this repository in GitHub
+1.  Add the person who **didn't** fork the repository as a [collaborator](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/).
+1.  Both individuals will clone the forked repo: $ git clone `[YOUR FORKED REPO URL]`
+1.  Both partners `cd` into their project directory
+1.  Run `rake` to run the tests
 
-- Clone the repo
-- Install via ...
-- Seed the database via ...
-- Run the project via ...
-- Run tests via ...
+### Process
+You should use the following process as much as possible:
 
-For example, Adagrams has the following h3s:
-
-- Tests
-- Pair Programming
-- Driver Code
+1.  Write pseudocode
+1.  Write test(s)
+1.  Write code
+1.  Refactor
 
 ## Setup Requirements
 
-Not many projects will have this, but it is one of the few "Requirements" sections that could exist
+This project comes with a large amount of scaffolding code already written. Before you start writing code, you and your partner should spend some time reading through what's here. Building a strong understanding now will make the rest of the project much smoother.
 
-If the project has a non-code requirement about a deliverable that must be done before they start coding, it should be here. Examples include making diagrams, ERDs, design, etc.
+### Tests
 
-- Make a diagram about ...
-- Discuss with others
+Start by running the tests:
 
+```
+$ rake test
+... test output ...
+Finished in 0.14685s
+28 tests, 64 assertions, 0 failures, 0 errors, 1 skips
+```
+
+All the existing code is thoroughly tested; code you write should not break these tests. When you add new functionality to this project, you should add new tests as well.
+
+The tests can serve as an example of how the methods and classes should work. If you're ever confused about what one of these methods looks like "from the outside", the tests can serve as your guide.
+
+### Reading Code
+
+The existing code contains 4 classes:
+- `Passenger`
+- `Trip`
+- `CsvRecord`
+- `TripDispatcher`
+
+**Before you go any further, think about how these classes might be related.** Draw a diagram, if that will help. Your guess doesn't have to be correct at this stage - making a prediction and then checking it is an important part of the learning process.
+
+Now, start reading through the code. There are two equally valid ways to approach this:
+
+- Top-down: start with the big pieces.
+    - What classes are there, and how do they interact?
+    - How does it look from the outside?
+    - How are these classes tested?
+- Bottom-up: start with the details. Pick an interesting method (say `Passenger.load_all`) and learn everything about it.
+    - What arguments does it take?
+    - How does it work? If there's more than one step, what are they? Why are they in that order?
+    - What other methods does call? 
+    - What does it return?
+    - What code calls it, and how does it use the returned value?
+    - How is it tested?
+
+### Playing Around
+
+One of the most effective way to learn a new codebase is to use it. Since this code is a library not a program, there's nothing obvious to run from the command line, so we'll have to be a little clever. We can use `pry` to load the code, and then play with it in the interpreter:
+
+```
+$ pry -r ./lib/trip_dispatcher.rb
+[1] pry(main)> td = RideShare::TripDispatcher.new
+=> #<RideShare::TripDispatcher:0x3fe91f52950c>
+[2] pry(main)> td.trips.length
+=> 600
+```
+
+### Comprehension Questions
+
+Before you start writing code, use the above techniques to answer the following questions. If you have questions or run into something that you can't figure out, consult with another group.
+
+#### Classes and Relationships
+
+- What _inheritance_ relations exist between classes?
+- What _composition_ relations exist between classes?
+- Did these relations match your prediction earlier?
+- Draw a class diagram that contains all of the above relations.
+
+#### Code Details
+
+- Why doesn't `Passenger` or `Trip` need an `attr_reader` for `id`?
+- Why does the version of `from_csv` in `CsvRecord` raise a `NotImplementedError`? What does this mean? Why don't we hit that when we run the code?
+- Why is `from_csv` a private method?
+- How does `CsvRecord.load_all` know what CSV file to open? 
+- When you call `Passenger.load_all`, what happens? What methods are called in what order?
+
+#### Using the Library
+
+Using the pry session we started above, how would you...
+
+- Print the rating for the first trip
+- Print the name of the passenger for trip 7
+- Print the ID of the trip that cost the most money
+- Print the name the passenger who has spent the most money
 
 ## Implementation Requirements
 
@@ -101,6 +176,11 @@ Sometimes there are a list of optional enhancements that aren't necessarily in t
 ## What Instructors Are Looking For
 Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
 
+
+
+
+
+
 # <Dan's Notes>
 
 ## General
@@ -110,18 +190,7 @@ Possibly remove or abridge the `Context` section. Certainly needs to be rewritte
 ## Comprehension Questions
 
 To the baseline or setup or whatever section, add comprehension questions, to be answered with your partner:
-- You can experiment with the code in pry with `pry -r ./lib/trip_dispatcher.rb`, then `td = RideShare::TripDispatcher.new`
-- **Classes and Relationships:**
-  - What classes are there in this project?
-  - What _inheritance_ relations exist between classes?
-  - What _composition_ relations exist between classes?
-  - Draw a class diagram that contains all of the above relations.
-- **Code:**
-  - Why doesn't `Passenger` or `Trip` need an `attr_reader` for `id`?
-  - Why does the version of `from_csv` in `CsvRecord` raise a `NotImplementedError`? What does this mean? Why don't we hit that when we run the code?
-  - Why is `from_csv` a private method?
-  - How does `CsvRecord.load_all` know what CSV file to open? 
-  - When you call `Passenger.load_all`, what happens? What methods are called in what order?
+
 
 ## Waves
 
@@ -134,14 +203,13 @@ To the baseline or setup or whatever section, add comprehension questions, to be
 # </Dan's Notes>
 
 
+
+
+
+
+
 ## Context
-We have a code base that already pulls data from CSV files and turns them into collections of the following objects:
--   `User`s
--   `Trip`s
 
-All of this data is managed in a class called `TripDispatcher`. Our program will contain _one_ instance of `TripDispatcher`, which will load and manage the lists of `Driver`s, `User`s and `Trip`s.
-
-We are going to continue making functionality that works with this data, such as determining the duration of a specific trip and the total amount of money a user has spent, as well as the amount of money a driver has made and also add functionality to create a new trip and assign available drivers.
 
 ### The Code So Far
 
@@ -208,26 +276,7 @@ By the end of this project, a `TripDispatcher` will be able to:
 
 ## Getting Started
 
-We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You will run tests by executing the `rake` command, as configured in a Rakefile.
 
-The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
-
-### Setup
-1.  You'll be working with an assigned pair. High-five your pair.
-1.  Choose **one** person to fork this repository in GitHub
-1.  Add the person who **didn't** fork the repository as a [collaborator](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/).
-1.  Both individuals will clone the forked repo: $ git clone `[YOUR FORKED REPO URL]`
-1.  Both partners `cd` into their project directory
-1.  Run `rake` to run the tests
-1.  Together review the provided tests and code.
-
-### Process
-You should use the following process as much as possible:
-
-1.  Write pseudocode
-1.  Write test(s)
-1.  Write code
-1.  Refactor
 
 ## Requirements
 
