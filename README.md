@@ -152,12 +152,12 @@ Currently our implementation saves the start and end time of each trip as a stri
 
 **Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work.
 
-#### 1.2: User Aggregate Statistics
+#### 1.2: Passenger Methods
 
-Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `User`.
+Now that we have data for trip time stored in a more convenient way, we can do some interesting data processing. Each of these should be implemented as an instance method on `Passenger`.
 
-1.  Add an instance method, `net_expenditures`, to `User` that will return the _total amount of money_ that user has spent on their trips
-1.  Add an instance method,  `total_time_spent` to `User` that will return the _total amount of time_ that user has spent on their trips
+1.  Add an instance method, `net_expenditures`, to `Passenger` that will return the _total amount of money_ that passenger has spent on their trips
+1.  Add an instance method,  `total_time_spent` to `Passenger` that will return the _total amount of time_ that passenger has spent on their trips
 
 **Each of these methods must have tests.**
 
