@@ -15,11 +15,12 @@ module RideShare
     end
 
     def find_passenger(id)
-      CsvRecord.validate_id(id)
+      Passenger.validate_id(id)
       return @passengers.find { |passenger| passenger.id == id }
     end
 
     def inspect
+      # Make puts output more useful
       return "#<#{self.class.name}:0x#{object_id.to_s(16)} \
               #{trips.count} trips, \
               #{drivers.count} drivers, \

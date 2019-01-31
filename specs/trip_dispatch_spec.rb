@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 TEST_DATA_DIRECTORY = 'specs/test_data'
 
 describe "TripDispatcher class" do
-  def build_dispatcher
+  def build_test_dispatcher
     return RideShare::TripDispatcher.new(
       directory: TEST_DATA_DIRECTORY
     )
@@ -11,12 +11,12 @@ describe "TripDispatcher class" do
 
   describe "Initializer" do
     it "is an instance of TripDispatcher" do
-      dispatcher = build_dispatcher
+      dispatcher = build_test_dispatcher
       expect(dispatcher).must_be_kind_of RideShare::TripDispatcher
     end
 
     it "establishes the base data structures when instantiated" do
-      dispatcher = build_dispatcher
+      dispatcher = build_test_dispatcher
       [:trips, :passengers].each do |prop|
         expect(dispatcher).must_respond_to prop
       end
@@ -39,7 +39,7 @@ describe "TripDispatcher class" do
   describe "passengers" do
     describe "find_passenger method" do
       before do
-        @dispatcher = build_dispatcher
+        @dispatcher = build_test_dispatcher
       end
 
       it "throws an argument error for a bad ID" do
@@ -54,7 +54,7 @@ describe "TripDispatcher class" do
 
     describe "Passenger & Trip loader methods" do
       before do
-        @dispatcher = build_dispatcher
+        @dispatcher = build_test_dispatcher
       end
 
       it "accurately loads passenger information into passengers array" do
@@ -68,7 +68,7 @@ describe "TripDispatcher class" do
       end
 
       it "connects trips and passengers" do
-        dispatcher = build_dispatcher
+        dispatcher = build_test_dispatcher
         dispatcher.trips.each do |trip|
           expect(trip.passenger).wont_be_nil
           expect(trip.passenger.id).must_equal trip.passenger_id
@@ -82,7 +82,7 @@ describe "TripDispatcher class" do
   xdescribe "drivers" do
     describe "find_driver method" do
       before do
-        @dispatcher = build_dispatcher
+        @dispatcher = build_test_dispatcher
       end
     
       it "throws an argument error for a bad ID" do
@@ -97,7 +97,7 @@ describe "TripDispatcher class" do
 
     describe "Driver & Trip loader methods" do
       before do
-        @dispatcher = build_dispatcher
+        @dispatcher = build_test_dispatcher
       end
 
       it "accurately loads driver information into drivers array" do
@@ -113,7 +113,7 @@ describe "TripDispatcher class" do
       end
 
       it "connects trips and drivers" do
-        dispatcher = build_dispatcher
+        dispatcher = build_test_dispatcher
         dispatcher.trips.each do |trip|
           expect(trip.driver).wont_be_nil
           expect(trip.driver.id).must_equal trip.driver_id
