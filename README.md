@@ -50,7 +50,7 @@ You should use the following process as much as possible:
 1.  Refactor
 
 ### Pair Plan
-Come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
+Come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a plan for your implementation.
 
 ## Setup Requirements
 
@@ -109,7 +109,7 @@ $ pry -r ./lib/trip_dispatcher.rb
 
 ### Comprehension Questions
 
-Before you start writing code, you and your partner should work together, using the above techniques to answer the following questions. If you have questions or run into something that you can't figure out, consult with another group.
+Before you start writing code, you and your partner should use the above techniques and work together to answer the following questions. If you have questions or run into something that you can't figure out, consult with another group.
 
 #### Classes and Relationships
 
@@ -132,8 +132,8 @@ Using the pry session we started above, how would you...
 
 - Print the rating for the first trip
 - Print the name of the passenger for trip 7
+- Print the ID of every trip taken by passenger 9
 - Print the ID of the trip that cost the most money
-- Print the name the passenger who has spent the most money
 
 ## Implementation Requirements
 
