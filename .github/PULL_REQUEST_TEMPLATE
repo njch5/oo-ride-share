@@ -4,9 +4,11 @@ Congratulations! You're submitting your assignment!
 ## Comprehension Questions
 Question | Answer
 :------------- | :-------------
-Describe a design decision you had to make when working on this project. What options were you considering? What helped you make your final decision? |
-Describe any examples of composition that you encountered in this project, if any |
-Describe the relationship between `User` and `Driver`|
-Describe a _nominal test_ that you wrote for this assignment. |
-Describe an _edge case test_ that you wrote for this assignment. |
-Describe a concept that you gained more clarity on as you worked on this assignment. |
+How did getting up to speed on the existing codebase go? If it went well, what worked? If it didn't go well, what will you do differently next time? | 
+What _inheritance_ relations exist between classes? | 
+What _composition_ relations exist between classes? | 
+Describe a decision you had to make when working on this project. What options were you considering? What helped you make your final decision? | 
+Give an example of a _template method_ that you implemented for this assignment | 
+Give an example of a _nominal test_ that you wrote for this assignment | 
+Give an example of an _edge case test_ that you wrote for this assignment | 
+What is a concept that you gained more clarity on as you worked on this assignment | 
