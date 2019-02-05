@@ -240,8 +240,7 @@ You should use this information to:
 - Modify this selected driver using a new helper method in `Driver`:
     - Add the new trip to the collection of trips for that `Driver`
     - Set the driver's status to `:UNAVAILABLE`
-- Modify the passenger for the trip using a new helper method in `Passenger`
-    -Add the new trip to the collection of trips for the passenger in `Passenger`
+- Add the `Trip` to the `Passenger`'s list of `Trip`s
 - Add the new trip to the collection of all `Trip`s in `TripDispatcher`
 - Return the newly created trip
 
@@ -250,7 +249,6 @@ You should use this information to:
 - Were the trip lists for the driver and passenger updated?
 - Was the driver who was selected `AVAILABLE`?
 - What happens if you try to request a trip when there are no `AVAILABLE` drivers?
-- Drivers cannot drive themselves
 
 #### Interaction with Waves 1 & 2
 
