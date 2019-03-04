@@ -39,7 +39,7 @@ The `support` folder contains CSV files which will drive your system design. Eac
 1.  Add the person who **didn't** fork the repository as a [collaborator](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/).
 1.  Both individuals will clone the forked repo: $ git clone `[YOUR FORKED REPO URL]`
 1.  Both partners `cd` into their project directory
-1.  Each partner should run `bundle install`, this command will read the `Gemfile` and install all the required gems (like rake!).
+1.  Each partner should run `bundle install`, this command will read the `Gemfile` and install all the required gems (like rake!).  If you are curious you can [read more about gemfiles](https://tosbourn.com/what-is-the-gemfile/).
 1.  Run `rake` to run the tests
 
 ### Process
