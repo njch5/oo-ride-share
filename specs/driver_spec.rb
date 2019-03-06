@@ -15,10 +15,6 @@ xdescribe "Driver class" do
       expect(@driver).must_be_kind_of RideShare::Driver
     end
 
-    it "throws an argument error with a bad VIN" do
-      expect { RideShare::Driver.new(id: 0, name: "George", vin: "33133313331333133extranums") }.must_raise ArgumentError
-    end
-
     it "throws an argument error with a bad VIN value" do
       expect { RideShare::Driver.new(id: 100, name: "George", vin: "") }.must_raise ArgumentError
       expect { RideShare::Driver.new(id: 100, name: "George", vin: "33133313331333133extranums") }.must_raise ArgumentError
