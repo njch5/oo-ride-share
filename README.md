@@ -147,7 +147,7 @@ The purpose of Wave 1 is to help you become familiar with the existing code, and
 Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `Time` class](https://ruby-doc.org/core-2.5.1/Time.html). You should:
 
 1.  Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
-1.  Modify `Trip#initialize` to turn `start_time` and `end_time` into `Time` instances before saving them
+1.  Modify `Trip.from_csv` to turn `start_time` and `end_time` into `Time` instances before passing them to `Trip#initialize`
 1.  Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, **and a corresponding test**
 1.  Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, **and a corresponding test**
 
