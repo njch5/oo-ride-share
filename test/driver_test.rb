@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative 'test_helper'
 
 xdescribe "Driver class" do
   describe "Driver instantiation" do
