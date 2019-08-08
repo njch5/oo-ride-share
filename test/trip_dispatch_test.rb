@@ -1,6 +1,6 @@
-require_relative 'spec_helper'
+require_relative 'test_helper'
 
-TEST_DATA_DIRECTORY = 'specs/test_data'
+TEST_DATA_DIRECTORY = 'test/test_data'
 
 describe "TripDispatcher class" do
   def build_test_dispatcher
@@ -31,7 +31,7 @@ describe "TripDispatcher class" do
       trip_count = %x{wc -l 'support/trips.csv'}.split(' ').first.to_i - 1
 
       dispatcher = RideShare::TripDispatcher.new
-      
+
       expect(dispatcher.trips.length).must_equal trip_count
     end
   end
@@ -84,11 +84,11 @@ describe "TripDispatcher class" do
       before do
         @dispatcher = build_test_dispatcher
       end
-    
+
       it "throws an argument error for a bad ID" do
         expect { @dispatcher.find_driver(0) }.must_raise ArgumentError
       end
-    
+
       it "finds a driver instance" do
         driver = @dispatcher.find_driver(2)
         expect(driver).must_be_kind_of RideShare::Driver
