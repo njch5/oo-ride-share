@@ -3,7 +3,7 @@
 ## At a Glance
 
 - Pair, [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md#stage-2) project
-- Due End Of Day, Friday, August 30th
+- Due End Of Day Friday, August 30th
 
 ## Introduction
 
