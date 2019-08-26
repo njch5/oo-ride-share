@@ -1,9 +1,9 @@
-require_relative 'test_helper'
+require_relative "test_helper"
 
 describe "Trip class" do
   describe "initialize" do
     before do
-      start_time = Time.parse('2015-05-20T12:14:00+00:00')
+      start_time = Time.parse("2015-05-20T12:14:00+00:00")
       end_time = start_time + 25 * 60 # 25 minutes
       @trip_data = {
         id: 8,
@@ -13,7 +13,7 @@ describe "Trip class" do
         start_time: start_time,
         end_time: end_time,
         cost: 23.45,
-        rating: 3
+        rating: 3,
       }
       @trip = RideShare::Trip.new(@trip_data)
     end
@@ -39,5 +39,16 @@ describe "Trip class" do
         end.must_raise ArgumentError
       end
     end
+  end
+
+  it "raises an argument error if start time is higher than end time" do
+    trip = RideShare::Trip.new(id: "1",
+                               passenger: "20",
+                               passenger_id: "54",
+                               start_time: Time.parse("2018-12-27 03:38:08 -0800"),
+                               end_time: Time.parse("2018-12-27 02:39:05 -0800"),
+                               cost: "10",
+                               rating: "4")
+    expect { trip }.must_raise ArgumentError
   end
 end
