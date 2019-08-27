@@ -51,4 +51,7 @@ describe "Trip class" do
                                rating: "4".to_f)
     expect { trip }.must_raise ArgumentError
   end
+
+  it "will return the difference between start and end times" do
+  end
 end

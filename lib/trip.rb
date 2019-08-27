@@ -41,9 +41,6 @@ module RideShare
       end
     end
 
-    def valid_time?
-    end
-
     def inspect
       # Prevent infinite loop when puts-ing a Trip
       # trip contains a passenger contains a trip contains a passenger...
