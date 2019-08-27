@@ -10,10 +10,17 @@ describe "Trip class" do
         passenger: RideShare::Passenger.new(id: 1,
                                             name: "Ada",
                                             phone_number: "412-432-7640"),
+
+        driver: RideShare::Driver.new(id: 2,
+                                      name: "Bob Walsh",
+                                      vin: "WBS76FYD47DJF7206",
+                                      status: :AVAILABLE),
+
         start_time: start_time,
         end_time: end_time,
         cost: 23.45,
         rating: 3,
+
       }
       @trip = RideShare::Trip.new(@trip_data)
     end
@@ -45,6 +52,7 @@ describe "Trip class" do
     expect do
       RideShare::Trip.new(id: 1,
                           passenger_id: 5,
+                          driver_id: 5,
                           start_time: Time.parse("2018-12-27 03:38:08 -0800"),
                           end_time: Time.parse("2018-12-27 02:39:05 -0800"),
                           cost: 10,
@@ -58,6 +66,7 @@ describe "Trip class" do
       expect do
         trip = RideShare::Trip.new(id: 1,
                                    passenger_id: 5,
+                                   driver_id: 5,
                                    start_time: Time.parse("2018-12-27 02:39:05 -0800"),
                                    end_time: Time.parse("2018-12-27 03:38:08 -0800"),
                                    cost: 10,

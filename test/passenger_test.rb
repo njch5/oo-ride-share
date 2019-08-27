@@ -42,9 +42,17 @@ describe "Passenger class" do
         phone_number: "1-602-620-2330 x3723",
         trips: [],
       )
+      @driver = RideShare::Driver.new(
+        id: 2,
+        name: "Billy Bob",
+        vin: "WBS76FYD47DJF7206",
+        status: :AVAILABLE,
+      )
+
       trip = RideShare::Trip.new(
         id: 8,
         passenger: @passenger,
+        driver: @driver,
         start_time: "2016-08-08",
         end_time: "2016-08-09",
         rating: 5,
@@ -76,9 +84,17 @@ describe "Passenger class" do
         trips: [],
       )
 
+      @driver = RideShare::Driver.new(
+        id: 2,
+        name: "Billy Bob",
+        vin: "WBS76FYD47DJF7206",
+        status: :AVAILABLE,
+      )
+
       trip = RideShare::Trip.new(
         id: 5,
         passenger: @passenger,
+        driver: @driver,
         start_time: Time.parse("2018-12-27 02:39:05 -0800"),
         end_time: Time.parse("2018-12-27 03:38:08 -0800"),
         rating: 5,
@@ -88,6 +104,7 @@ describe "Passenger class" do
       trip_two = RideShare::Trip.new(
         id: 6,
         passenger: @passenger,
+        driver: @driver,
         start_time: Time.parse("2018-11-17 11:18:35 -0800"),
         end_time: Time.parse("2018-11-17 11:52:29 -0800"),
         rating: 4,
@@ -110,9 +127,17 @@ describe "Passenger class" do
         trips: [],
       )
 
+      @driver = RideShare::Driver.new(
+        id: 2,
+        name: "Billy Bob",
+        vin: "WBS76FYD47DJF7206",
+        status: :AVAILABLE,
+      )
+
       trip = RideShare::Trip.new(
         id: 5,
         passenger: @passenger,
+        driver: @driver,
         start_time: Time.parse("2018-12-27 02:39:05 -0800"),
         end_time: Time.parse("2018-12-27 03:38:08 -0800"),
         rating: 5,
@@ -122,6 +147,7 @@ describe "Passenger class" do
       trip_two = RideShare::Trip.new(
         id: 6,
         passenger: @passenger,
+        driver: @driver,
         start_time: Time.parse("2018-11-17 11:18:35 -0800"),
         end_time: Time.parse("2018-11-17 11:52:29 -0800"),
         rating: 4,
