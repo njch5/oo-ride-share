@@ -75,14 +75,16 @@ describe "Passenger class" do
   end
 
   describe "net_expenditures" do
-    # You add tests for the net_expenditures method
-    it "will return the net expenditures a passenger spent on their trips" do
-      @passenger = RideShare::Passenger.new(
-        id: 9,
-        name: "Merl Glover III",
-        phone_number: "1-602-620-2330 x3723",
-        trips: [],
-      )
+    before do
+      # You add tests for the net_expenditures method
+      it "will return the net expenditures a passenger spent on their trips" do
+        @passenger = RideShare::Passenger.new(
+          id: 9,
+          name: "Merl Glover III",
+          phone_number: "1-602-620-2330 x3723",
+          trips: [],
+        )
+      end
 
       @driver = RideShare::Driver.new(
         id: 2,
