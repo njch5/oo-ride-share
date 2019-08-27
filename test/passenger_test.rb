@@ -34,7 +34,6 @@ describe "Passenger class" do
     end
   end
 
-
   describe "trips property" do
     before do
       # TODO: you'll need to add a driver at some point here.
@@ -69,6 +68,36 @@ describe "Passenger class" do
   end
 
   describe "net_expenditures" do
+
+    before do
+      @passenger = RideShare::Passenger.new(
+        id: 9,
+        name: "Merl Glover III",
+        phone_number: "1-602-620-2330 x3723",
+        trips: []
+        )
+    end
+
+    it "should return the total amount of money that pasenger has spent on their trips" do
     # You add tests for the net_expenditures method
+      @passenger.add_trip(RideShare::Trip.new(
+        id: 8,
+        passenger: @passenger,
+        start_time: "2016-08-08",
+        end_time: "2016-08-09",
+        rating: 5,
+        cost: 12
+        ))
+      @passenger.add_trip(RideShare::Trip.new(
+        id: 10,
+        passenger: @passenger,
+        start_time: "2016-08-08",
+        end_time: "2016-08-09",
+        rating: 5,
+        cost: 12
+        ))
+      
+        expect(@passenger.net_expenditures).must_equal 24
+    end
   end
 end

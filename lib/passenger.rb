@@ -1,4 +1,5 @@
 require_relative 'csv_record'
+require 'pry'
 
 module RideShare
   class Passenger < CsvRecord
@@ -16,9 +17,21 @@ module RideShare
       @trips << trip
     end
 
+    def net_expenditures
+      expenditures = 0
+      @trips.each do |trip|
+        expenditures += trip.cost
+      end 
+      return expenditures
+    end
+
     private
 
+    # overriding from the CsvRecord class.
     def self.from_csv(record)
+
+      #binding.pry
+      
       return new(
         id: record[:id],
         name: record[:name],

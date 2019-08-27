@@ -39,20 +39,21 @@ describe "Trip class" do
         end.must_raise ArgumentError
       end
     end
-  end
 
-  it "raises an argument error if start time is higher than end time" do
-    expect do
-      RideShare::Trip.new(id: 1,
-                          passenger_id: 5,
-                          start_time: Time.parse("2018-12-27 03:38:08 -0800"),
-                          end_time: Time.parse("2018-12-27 02:39:05 -0800"),
-                          cost: 10,
-                          rating: 4)
-    end.must_raise ArgumentError
+    it "raises an argument error if start time is higher than end time" do
+      expect do
+        RideShare::Trip.new(id: 1,
+                            #passenger: nil,
+                            passenger_id: 5,
+                            start_time: Time.parse("2018-12-27 03:38:08 -0800"),
+                            end_time: Time.parse("2018-12-27 02:39:05 -0800"),
+                            cost: 10,
+                            rating: 4)
+      end.must_raise ArgumentError
+    end
   end
-end
-describe "Trip class" do
+# end
+# describe "Trip class" do - This is the same from line 1 it shouldn't be here
   describe "Duration method" do
     it "will return the difference between start and end times" do
       expect do

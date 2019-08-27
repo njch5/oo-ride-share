@@ -1,4 +1,5 @@
 require 'csv'
+require 'pry'
 
 module RideShare
   class CsvRecord
@@ -42,6 +43,7 @@ module RideShare
       unless file_name
         class_name = self.to_s.split('::').last
         file_name = "#{class_name.downcase}s.csv"
+      # binding.pry
       end
 
       return "#{directory}/#{file_name}"
