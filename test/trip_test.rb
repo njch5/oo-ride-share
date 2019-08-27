@@ -51,16 +51,20 @@ describe "Trip class" do
                           rating: 4)
     end.must_raise ArgumentError
   end
+end
+describe "Trip class" do
+  describe "Duration method" do
+    it "will return the difference between start and end times" do
+      expect do
+        trip = RideShare::Trip.new(id: 1,
+                                   passenger_id: 5,
+                                   start_time: Time.parse("2018-12-27 02:39:05 -0800"),
+                                   end_time: Time.parse("2018-12-27 03:38:08 -0800"),
+                                   cost: 10,
+                                   rating: 4)
 
-  it "will return the difference between start and end times" do
-    trip = RideShare::Trip.new(id: 1,
-                               passenger_id: 5,
-                               start_time: Time.parse("2018-12-27 02:39:05 -0800"),
-                               end_time: Time.parse("2018-12-27 03:38:08 -0800"),
-                               cost: 10,
-                               rating: 4)
-
-    difference = trip.duration
-    expect do (difference) end.must_equal 3543.0
+        trip.duration.must_equal 3543.0
+      end
+    end
   end
 end
