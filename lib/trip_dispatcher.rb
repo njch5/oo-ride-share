@@ -33,6 +33,18 @@ module RideShare
               #{passengers.count} passengers>"
     end
 
+    def self.request_trip(passenger_id)
+      # create a new trip (Trip.new(id, passenger_id, driver_id, start_time: Time.now, end_time: nil, cost: nil, rating: nil))
+      # Use find method to find first driver who is AVAILABLE
+      # Create helper method in Driver class
+      # Use series of conditional statements to check if Driver is available. If so, use change_status method to change to UNAVAILABLE
+      passenger = find_passenger(passenger_id)
+      available_driver = drivers.find { |driver| driver.status == :AVAILABLE }
+      if available_driver == nil
+        raise ArgumentError.new "There are no available drivers"
+      end
+    end
+
     private
 
     def connect_trips
