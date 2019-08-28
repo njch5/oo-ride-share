@@ -53,6 +53,10 @@ module RideShare
       return (total_rev - 1.65) * 0.80
     end
 
+    def change_status # helper method to change driver's status
+      status = :UNAVAILABLE
+    end
+
     private
 
     def self.from_csv(record)
