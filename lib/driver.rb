@@ -54,7 +54,7 @@ module RideShare
     end
 
     def change_status # helper method to change driver's status
-      status = :UNAVAILABLE
+      @status = :UNAVAILABLE
     end
 
     private
