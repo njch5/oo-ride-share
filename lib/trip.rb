@@ -34,19 +34,22 @@ module RideShare
       @start_time = start_time
       @end_time = end_time
 
-      if @start_time == nil || @end_time == nil
-        raise ArgumentError.new("The time cannot be nil")
-      elsif @start_time == 0 || @start_time == 0
-        raise ArgumentError.new("The time cannot be 0")
-      elsif @start_time > @end_time
-        raise ArgumentError.new("This start time cannot be higher than the end time")
+      # if @start_time == nil || @end_time == nil
+      #   raise ArgumentError.new("The time cannot be nil")
+      if @end_time != nil
+        if @start_time == 0 || @end_time == 0
+          raise ArgumentError.new("The time cannot be 0")
+        elsif @start_time > @end_time
+          raise ArgumentError.new("This start time cannot be higher than the end time")
+        end
       end
 
       @cost = cost
       @rating = rating
-
-      if @rating > 5 || @rating < 1
-        raise ArgumentError.new("Invalid rating #{@rating}")
+      if rating != nil
+        if @rating > 5 || @rating < 1
+          raise ArgumentError.new("Invalid rating #{@rating}")
+        end
       end
     end
 

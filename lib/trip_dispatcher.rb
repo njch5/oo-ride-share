@@ -41,8 +41,29 @@ module RideShare
       passenger = find_passenger(passenger_id)
       available_driver = drivers.find { |driver| driver.status == :AVAILABLE }
       if available_driver == nil
-        raise ArgumentError.new "There are no available drivers"
+        raise ArgumentError.new "There are no available drivers!"
       end
+
+      start_time = Time.now
+      end_time = nil
+      cost = nil
+      rating = nil
+
+      current_trip = RideShare::Trip.new(
+        id: 8,
+        passenger_id: passenger,
+        driver_id: available_driver.id,
+        start_time: start_time,
+        end_time: end_time,
+        cost: cost,
+        rating: rating,
+      )
+
+      passenger.add_trip(current_trip)
+      available_driver.add_trip(current_trip)
+      @trips << current_trip
+      available_driver.change_status
+      return current_trip
     end
 
     private

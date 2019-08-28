@@ -121,5 +121,39 @@ describe "TripDispatcher class" do
         end
       end
     end
+    describe "Trip Dispatcher class" do
+      describe "request_trip method" do
+        before do
+          def build_test_dispatcher
+            return RideShare::TripDispatcher.new(
+                     directory: TEST_DATA_DIRECTORY,
+                   )
+          end
+
+          @dispatcher = build_test_dispatcher
+          @available_driver = @dispatcher.drivers.find { |driver| driver.status == :AVAILABLE }
+
+          @current_trip = RideShare::Trip.new(
+            id: 8,
+            passenger_id: 10,
+            driver_id: 6,
+            start_time: Time.now,
+            end_time: nil,
+            cost: nil,
+            rating: nil,
+          )
+        end
+
+        it "will return an instance of Trip" do
+          @current_trip.must_be_kind_of RideShare::Trip
+        end
+        it "will change driver's status to UNAVAILABLE" do
+          @available_driver.change_status.must_equal :UNAVAILABLE
+        end
+        it "will raise an ArgumentError if there are no available drivers" do
+          driver_1 = id: 3, name: "Willy Wonka", vin:, status: :AVAILABLE
+        end
+      end
+    end
   end
 end
