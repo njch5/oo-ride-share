@@ -151,7 +151,10 @@ describe "TripDispatcher class" do
           @available_driver.change_status.must_equal :UNAVAILABLE
         end
         it "will raise an ArgumentError if there are no available drivers" do
-          driver_1 = id: 3, name: "Willy Wonka", vin:, status: :AVAILABLE
+          @dispatcher.drivers.each do |driver|
+            driver.change_status
+          end
+          expect(@dispatcher.drivers.find { |driver| driver.status == :AVAILABLE }).must_equal nil
         end
       end
     end
