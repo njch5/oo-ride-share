@@ -33,7 +33,7 @@ module RideShare
               #{passengers.count} passengers>"
     end
 
-    def self.request_trip(passenger_id)
+    def request_trip(passenger_id)
       # create a new trip (Trip.new(id, passenger_id, driver_id, start_time: Time.now, end_time: nil, cost: nil, rating: nil))
       # Use find method to find first driver who is AVAILABLE
       # Create helper method in Driver class

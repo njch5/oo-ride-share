@@ -138,6 +138,13 @@ describe "TripDispatcher class" do
             name: "Kyle Walls",
             phone_number: "111-111-1114",
           )
+
+          @driver = RideShare::Driver.new(
+            id: 7,
+            name: "Johnny Apple",
+            vin: "1C6CF40K1J3Y74UY2",
+            status: :AVAILABLE,
+          )
           @completed_trip = RideShare::Trip.new(
             id: 2,
             passenger_id: 10,
@@ -162,7 +169,7 @@ describe "TripDispatcher class" do
         end
 
         it "will return an instance of Trip" do
-          @current_trip.must_be_kind_of RideShare::Trip
+          @dispatcher.request_trip(8).must_be_kind_of RideShare::Trip
         end
         it "will change driver's status to UNAVAILABLE" do
           @available_driver.change_status.must_equal :UNAVAILABLE
@@ -178,6 +185,14 @@ describe "TripDispatcher class" do
         end
         it "returns the number of trips added to Trip Dispatcher trips" do
           # Adding one current trip to Trips of Trip Dispatcher. Return length + 1
+          @dispatcher.trips << @current_trip
+          @dispatcher.trips.length.must_equal 6
+        end
+        it "calculates total money spent for a passenger an in progress trip" do
+          @passenger.net_expenditures.must_equal 25
+        end
+        it "calculates average rating for a driver in an progress trip" do
+          @driver.average_rating.must_equal 5
         end
       end
     end

@@ -44,12 +44,19 @@ module RideShare
         end
       end
 
-      @cost = cost
+      if cost == nil
+        @cost = 0
+      else
+        @cost = cost
+      end
+
       @rating = rating
       if rating != nil
         if @rating > 5 || @rating < 1
           raise ArgumentError.new("Invalid rating #{@rating}")
         end
+      else
+        @rating = 0
       end
     end
 
