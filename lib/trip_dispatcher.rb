@@ -50,7 +50,7 @@ module RideShare
       rating = nil
 
       current_trip = RideShare::Trip.new(
-        id: 8,
+        id: rand(601..1000000),
         passenger_id: passenger,
         driver_id: available_driver.id,
         start_time: start_time,

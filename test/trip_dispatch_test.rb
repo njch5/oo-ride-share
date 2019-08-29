@@ -133,6 +133,20 @@ describe "TripDispatcher class" do
           @dispatcher = build_test_dispatcher
           @available_driver = @dispatcher.drivers.find { |driver| driver.status == :AVAILABLE }
 
+          @passenger = RideShare::Passenger.new(
+            id: 10,
+            name: "Kyle Walls",
+            phone_number: "111-111-1114",
+          )
+          @completed_trip = RideShare::Trip.new(
+            id: 2,
+            passenger_id: 10,
+            driver_id: 3,
+            start_time: Time.parse("2018-05-25 11:52:40 -0700"),
+            end_time: Time.parse("2018-05-25 12:25:00 -0700"),
+            cost: 25,
+            rating: 5,
+          )
           @current_trip = RideShare::Trip.new(
             id: 8,
             passenger_id: 10,
@@ -142,6 +156,9 @@ describe "TripDispatcher class" do
             cost: nil,
             rating: nil,
           )
+
+          @passenger.add_trip(@completed_trip)
+          @passenger.add_trip(@current_trip)
         end
 
         it "will return an instance of Trip" do
@@ -150,11 +167,17 @@ describe "TripDispatcher class" do
         it "will change driver's status to UNAVAILABLE" do
           @available_driver.change_status.must_equal :UNAVAILABLE
         end
-        it "will raise an ArgumentError if there are no available drivers" do
+        it "returns nil if there are no available drivers" do
           @dispatcher.drivers.each do |driver|
             driver.change_status
           end
           expect(@dispatcher.drivers.find { |driver| driver.status == :AVAILABLE }).must_equal nil
+        end
+        it "returns the number of trips that one passenger has taken" do
+          @passenger.trips.length.must_equal 2
+        end
+        it "returns the number of trips added to Trip Dispatcher trips" do
+          # Adding one current trip to Trips of Trip Dispatcher. Return length + 1
         end
       end
     end
