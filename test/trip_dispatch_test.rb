@@ -166,6 +166,9 @@ describe "TripDispatcher class" do
 
           @passenger.add_trip(@completed_trip)
           @passenger.add_trip(@current_trip)
+
+          @driver.add_trip(@completed_trip)
+          @driver.add_trip(@current_trip)
         end
 
         it "will return an instance of Trip" do
@@ -192,6 +195,7 @@ describe "TripDispatcher class" do
           @passenger.net_expenditures.must_equal 25
         end
         it "calculates average rating for a driver in an progress trip" do
+          # binding.pry
           @driver.average_rating.must_equal 5
         end
       end

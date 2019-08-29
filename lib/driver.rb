@@ -37,12 +37,14 @@ module RideShare
       else
         @trips.each do |trip|
           rating += trip.rating
+        end
+        @trips.each do |trip|
           if trip.rating == 0
             rating_zero += 1
           end
         end
       end
-      return rating / @trips.length - rating_zero
+      return rating / (@trips.length - rating_zero)
     end
 
     def total_revenue
