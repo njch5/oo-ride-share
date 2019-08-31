@@ -187,14 +187,13 @@ describe "TripDispatcher class" do
           @passenger.trips.length.must_equal 2
         end
         it "returns the number of trips added to Trip Dispatcher trips" do
-          # Adding one current trip to Trips of Trip Dispatcher. Return length + 1
           @dispatcher.trips << @current_trip
           @dispatcher.trips.length.must_equal 6
         end
-        it "calculates total money spent for a passenger an in progress trip" do
+        it "calculates total money spent for a passenger in an in-progress trip" do
           @passenger.net_expenditures.must_equal 25
         end
-        it "calculates average rating for a driver in an progress trip" do
+        it "calculates average rating for a driver in an in-progress trip" do
           # binding.pry
           @driver.average_rating.must_equal 5
         end
